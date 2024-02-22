@@ -38,8 +38,8 @@ const MenuItem = ({ item }: { item: TNavItems }) => {
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.95 }}
     >
-      <Slack className='text-teal-400 h-7 w-7 mr-2' />
-      <Link href={item.href} className='text-teal-600'>
+      <Slack className='text-main h-7 w-7 mr-2' />
+      <Link href={item.href} className='text-main font-medium text-2xl w-full'>
         {item.title}
       </Link>
     </motion.li>
@@ -48,7 +48,10 @@ const MenuItem = ({ item }: { item: TNavItems }) => {
 
 export default function SideNavbar() {
   return (
-    <motion.ul variants={navVariants} className='m-0 p-6 absolute top-20 w-60'>
+    <motion.ul
+      variants={navVariants}
+      className='m-0 p-6 absolute top-20 w-full'
+    >
       {siteInfo.navItems.map((item: TNavItems, idx: number) => (
         <MenuItem item={item} key={idx} />
       ))}

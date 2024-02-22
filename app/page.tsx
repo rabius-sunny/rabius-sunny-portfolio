@@ -1,3 +1,9 @@
+import Hero from '~/components/home/Hero'
+
 export default function Home() {
-  return <div>Welcome to Rabius Sunny</div>
+  return (
+    <div>
+      <Hero />
+    </div>
+  )
 }

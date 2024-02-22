@@ -37,7 +37,7 @@ export default function Appbar() {
         className='flex items-center justify-between py-4 md:py-6'
         aria-label='Global'
       >
-        <div className='flex md:flex-1 ml-14 md:ml-0'>
+        <div className='flex ml-14 md:ml-0'>
           <Link href='/'>
             <span className='sr-only'>Rabius Sunny</span>
             <Image src='/images/logo.svg' width={200} height={60} alt='logo' />
@@ -50,7 +50,7 @@ export default function Appbar() {
             animate={isOpen ? 'open' : 'closed'}
           >
             <motion.div
-              className='absolute -top-3 left-0 bottom-0 w-80 bg-white'
+              className='absolute -top-3 left-0 bottom-0 w-80 bg-text'
               variants={sidebar}
             />
             <SideNavbar />
@@ -63,7 +63,7 @@ export default function Appbar() {
             aria-hidden='true'
           />
         )}
-        <div className='hidden md:flex md:gap-x-12'>
+        <div className='hidden md:flex md:gap-x-6 lg:gap-x-12'>
           {siteInfo.navItems.map((item: TNavItems) => (
             <Link
               key={item.title}
@@ -74,8 +74,11 @@ export default function Appbar() {
             </Link>
           ))}
         </div>
-        <div className='flex flex-1 items-center justify-end gap-4'>
-          <Link href='/' className='text-sm font-semibold leading-6'>
+        <div>
+          <Link
+            href='https://drive.google.com/uc?export=download&id=1ngEur21wHY9BfKTjTMREUpYhjE9F5jY8'
+            className='text-sm font-semibold leading-6'
+          >
             Get Resume <span aria-hidden='true'>&rarr;</span>
           </Link>
         </div>
