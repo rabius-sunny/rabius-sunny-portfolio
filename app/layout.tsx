@@ -6,6 +6,7 @@ import './globals.css'
 import Appbar from '~/components/shared/nav'
 import Footer from '~/components/shared/ui/Footer'
 import { siteInfo } from '~/config/site'
+import { merge } from '~/lib/utils'
 
 const maven = Maven_Pro({ subsets: ['latin'] })
 
@@ -26,10 +27,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={maven.className}>
-        <Appbar />
-        <main>{children}</main>
-        <Footer />
+      <body className={merge(maven.className, 'bg-main')}>
+        <main className=' bg-primary xl:max-w-7xl min-h-screen lg:min-h-[96vh] lg:mx-8 xl:mx-auto px-4 lg:px-8 text-text lg:mt-4 lg:rounded-2xl shadow-inner shadow-heading/30'>
+          <Appbar />
+
+          {children}
+
+          <Footer />
+        </main>
       </body>
     </html>
   )

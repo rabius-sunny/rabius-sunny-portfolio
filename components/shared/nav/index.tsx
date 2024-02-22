@@ -5,7 +5,6 @@ import Link from 'next/link'
 import { siteInfo } from '~/config/site'
 import { motion, useCycle } from 'framer-motion'
 
-import Container from '../ui/Container'
 import SideNavbar from './SideNavbar'
 import NavToggler from './Toggler'
 
@@ -34,7 +33,7 @@ export default function Appbar() {
 
   return (
     <header className=''>
-      <Container
+      <div
         className='flex items-center justify-between py-4 md:py-6'
         aria-label='Global'
       >
@@ -69,7 +68,7 @@ export default function Appbar() {
             <Link
               key={item.title}
               href={item.href}
-              className='text-sm font-medium uppercase'
+              className='text-sm font-medium uppercase text-white hover:text-heading'
             >
               {item.title}
             </Link>
@@ -80,7 +79,7 @@ export default function Appbar() {
             Get Resume <span aria-hidden='true'>&rarr;</span>
           </Link>
         </div>
-      </Container>
+      </div>
     </header>
   )
 }
