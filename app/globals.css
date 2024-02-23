@@ -19,3 +19,7 @@
     @apply px-4 py-2 rounded-lg font-medium duration-200 text-center;
   }
 }
+
+section {
+  margin: 2.5rem 0;
+}
