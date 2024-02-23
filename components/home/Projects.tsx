@@ -34,11 +34,10 @@ export default function Projects() {
                   Full-stack Blood Donation Application
                 </p>
                 <p className='text-sm mt-2'>
-                  Full-stack application enabling efficient blood matching,
-                  appointment scheduling and user reviews across donor,
-                  receiver, and admin dashboards. Facilitated intuitive blood
-                  type search and management processes for donors and receivers,
-                  fostering trust with review capabilities.
+                  Revolutionary blood donation platform using Modern Techs.
+                  Empowers users/donors/admins with profiles, appointment
+                  scheduling, donation tracking, and community engagement
+                  features for seamless donor-receiver interaction.
                 </p>
                 <div className='flex items-center gap-2 mt-2'>
                   <p className='font-medium text-sm'>keyword : </p>
