@@ -1,12 +1,12 @@
 import Hero from '~/components/home/Hero'
-import Projects from '~/components/home/Projects'
+import MyProjects from '~/components/home/MyProjects'
 import Skills from '~/components/home/Skills'
 
 export default function Home() {
   return (
     <div>
       <Hero />
-      <Projects />
+      <MyProjects />
       <Skills />
     </div>
   )
