@@ -33,7 +33,7 @@ export default function Appbar() {
   const [isOpen, toggleOpen] = useCycle(false, true)
 
   return (
-    <header>
+    <header className='shadow-lg shadow-heading/10'>
       <Container>
         <div
           className='flex items-center justify-between py-4 md:py-6'
