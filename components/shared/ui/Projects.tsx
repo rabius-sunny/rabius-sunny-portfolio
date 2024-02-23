@@ -34,8 +34,7 @@ export default function Projects({ count }: { count: number }) {
               donation tracking, and community engagement features for seamless
               donor-receiver interaction.
             </p>
-            <div className='flex items-center gap-2 mt-2'>
-              <p className='font-medium text-sm'>keyword : </p>
+            <div className='mt-4'>
               <Keywords
                 items={['nextjs', 'typescript', 'tailwindcss']}
                 compact
