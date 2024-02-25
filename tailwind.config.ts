@@ -14,7 +14,8 @@ const config: Config = {
       heading: '#00d6d6',
       white: colors.white,
       sky: colors.sky,
-      pink: colors.pink
+      pink: colors.pink,
+      transparent: colors.transparent
     }
   },
   plugins: []

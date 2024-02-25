@@ -12,11 +12,17 @@
   .flex-center {
     @apply flex items-center justify-center;
   }
+  label {
+    @apply font-medium;
+  }
   .flex-between {
     @apply flex items-center justify-between;
   }
   .btn {
     @apply px-4 py-2 rounded-lg font-medium duration-200 text-center;
+  }
+  .input {
+    @apply mt-2 w-full bg-transparent border border-white/20 px-4 py-2 rounded focus:outline-none focus:border-none focus:ring-1 focus:ring-white;
   }
 }
 
