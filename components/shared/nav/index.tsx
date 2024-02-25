@@ -52,7 +52,7 @@ export default function Appbar() {
           </div>
           <div className='z-20 md:hidden'>
             <motion.nav
-              className={`absolute top-0 left-0 bottom-0`}
+              className={`fixed top-0 left-0 bottom-0`}
               initial={false}
               animate={isOpen ? 'open' : 'closed'}
             >
