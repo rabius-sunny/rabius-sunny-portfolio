@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={merge(maven.className, 'bg-main')}>
-        <main className=' bg-primary min-h-screen lg:min-h-[96vh] xl:max-w-7xl lg:mx-8 xl:mx-auto text-text lg:mt-4 lg:rounded-2xl shadow-inner shadow-heading/30 overflow-hidden'>
+        <main className=' bg-primary min-h-screen lg:min-h-[96vh] xl:max-w-7xl lg:mx-8 xl:mx-auto text-text lg:my-4 lg:rounded-2xl lg:shadow-inner shadow-heading/30 overflow-hidden'>
           <Appbar />
 
           {children}
