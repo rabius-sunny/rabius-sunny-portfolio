@@ -28,7 +28,7 @@ export default function Hero() {
             }}
           />
           <h1 className='font-semibold mb-8 text-5xl'>Rabius Sunny</h1>
-          <p className='font-medium text-justify lg:text-start'>
+          <p className='font-medium text-sm md:text-base text-center lg:text-start'>
             Web Developer adept at contributing to collaborative working
             environments, finding solutions and determining customer
             satisfaction. Designed and developed web applications across the
