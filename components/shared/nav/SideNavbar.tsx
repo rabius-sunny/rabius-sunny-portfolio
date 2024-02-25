@@ -2,20 +2,23 @@
 
 import Link from 'next/link'
 import { siteInfo } from '~/config/site'
-import { motion } from 'framer-motion'
-import { Slack } from 'lucide-react'
+import { Cycle, motion } from 'framer-motion'
 
 const linkVariants = {
   open: {
     y: 0,
     opacity: 1,
+    display: 'block',
+
     transition: {
       y: { stiffness: 1000, velocity: -100 }
     }
   },
   closed: {
     y: 50,
+
     opacity: 0,
+    display: 'none',
     transition: {
       y: { stiffness: 1000 }
     }
@@ -23,10 +26,14 @@ const linkVariants = {
 }
 const navVariants = {
   open: {
-    transition: { staggerChildren: 0.07, delayChildren: 0.2 }
+    transition: { staggerChildren: 0.07, delayChildren: 0.1 }
   },
   closed: {
-    transition: { staggerChildren: 0.05, staggerDirection: -1 }
+    transition: {
+      staggerChildren: 0.05,
+      staggerDirection: -1,
+      delayChildren: 0.5
+    }
   }
 }
 
@@ -35,22 +42,25 @@ const MenuItem = ({ item }: { item: TNavItems }) => {
     <motion.li
       variants={linkVariants}
       className='p-0 list-none mb-10 flex items-center cursor-pointer'
-      whileHover={{ scale: 1.1 }}
-      whileTap={{ scale: 0.95 }}
+      whileHover={{ scale: 1.2 }}
+      whileTap={{ scale: 0.9 }}
     >
-      <Slack className='text-main h-7 w-7 mr-2' />
-      <Link href={item.href} className='text-main font-medium text-2xl w-full'>
+      <Link
+        href={item.href}
+        className='text-main uppercase font-medium text-2xl'
+      >
         {item.title}
       </Link>
     </motion.li>
   )
 }
 
-export default function SideNavbar() {
+export default function SideNavbar({ toggle }: { toggle: Cycle }) {
   return (
     <motion.ul
       variants={navVariants}
-      className='m-0 p-6 absolute top-20 w-full'
+      className='m-0 absolute top-20 p-6'
+      onClick={() => toggle()}
     >
       {siteInfo.navItems.map((item: TNavItems, idx: number) => (
         <MenuItem item={item} key={idx} />

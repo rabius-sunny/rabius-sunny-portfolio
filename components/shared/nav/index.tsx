@@ -50,9 +50,9 @@ export default function Appbar() {
               />
             </Link>
           </div>
-          <div className='z-[1000] md:hidden'>
+          <div className='z-20 md:hidden'>
             <motion.nav
-              className='absolute top-0 left-0 bottom-0 w-80'
+              className={`absolute top-0 left-0 bottom-0`}
               initial={false}
               animate={isOpen ? 'open' : 'closed'}
             >
@@ -60,13 +60,13 @@ export default function Appbar() {
                 className='absolute -top-3 left-0 bottom-0 w-80 bg-text'
                 variants={sidebar}
               />
-              <SideNavbar />
+              <SideNavbar toggle={toggleOpen} />
               <NavToggler toggle={() => toggleOpen()} />
             </motion.nav>
           </div>
           {isOpen && (
             <div
-              className='fixed inset-0 z-50 bg-black/30 backdrop-blur-sm'
+              className='fixed inset-0 z-10 bg-black/30 backdrop-blur-sm'
               aria-hidden='true'
             />
           )}
