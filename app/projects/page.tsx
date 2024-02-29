@@ -6,7 +6,7 @@ export default function ProjectsPage() {
     <div>
       <SectionHeader title='Projects' />
       <div className='my-20'>
-        <Projects count={6} />
+        <Projects />
       </div>
     </div>
   )

@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 import TypewriterComponent from 'typewriter-effect'
 
 import Container from '../shared/ui/Container'
@@ -28,7 +29,7 @@ export default function Hero() {
             }}
           />
           <h1 className='font-semibold mb-8 text-5xl'>Rabius Sunny</h1>
-          <p className='font-medium text-sm md:text-base text-center lg:text-start'>
+          <p className='font-medium text-sm sm:text-base text-start lg:text-start'>
             Web Developer adept at contributing to collaborative working
             environments, finding solutions and determining customer
             satisfaction. Designed and developed web applications across the
@@ -43,9 +44,12 @@ export default function Hero() {
             >
               Download Resume
             </a>
-            <button className='border btn w-full sm:w-auto mt-4 sm:mt-0 border-heading hover:shadow-lg hover:shadow-heading/50'>
+            <Link
+              href='/contact'
+              className='border btn block w-full sm:w-auto mt-4 sm:mt-0 border-heading hover:shadow-lg hover:shadow-heading/50'
+            >
               Contact
-            </button>
+            </Link>
           </div>
         </div>
         <div className='col-auto order-first lg:order-last'>

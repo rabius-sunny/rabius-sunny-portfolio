@@ -4,12 +4,12 @@ import { ArrowRight } from 'lucide-react'
 import Projects from '../shared/ui/Projects'
 import SectionHeader from '../shared/ui/SectionHeader'
 
-export default function ProjectsPage() {
+export default function MyProjects() {
   return (
     <section>
       <SectionHeader title='projects' />
       <div className='mt-10'></div>
-      <Projects count={3} />
+      <Projects />
       <div className='mt-8 flex justify-center'>
         <Link
           href='/projects'

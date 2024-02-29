@@ -8,3 +8,11 @@ type TSkills = {
   description: string
   skills: string[]
 }
+type TProject = {
+  image: string
+  link: string
+  heading: string
+  subheading: string
+  description: string
+  keywords: string[]
+}
