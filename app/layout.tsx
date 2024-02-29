@@ -17,7 +17,18 @@ export const metadata: Metadata = {
   },
   description: siteInfo.description,
   authors: siteInfo.author,
-  generator: siteInfo.generator
+  generator: siteInfo.generator,
+  applicationName: siteInfo.applicationName,
+  keywords: siteInfo.keywords,
+  creator: siteInfo.name,
+  publisher: 'Vercel',
+  robots: 'index follow',
+  openGraph: {
+    title: siteInfo.name,
+    description: siteInfo.description,
+    siteName: siteInfo.name,
+    ...siteInfo.openGraph
+  }
 }
 
 export default function RootLayout({

@@ -1,4 +1,11 @@
+import { Metadata } from 'next'
 import Container from '~/components/shared/ui/Container'
+
+export const metadata: Metadata = {
+  title: 'Contact me',
+  description:
+    'Contact with Rabius Sunny Rezoan, software developer, frontend engineer and fullstack lover. Send message to Rabius Sunny. Your message is always valuable to me'
+}
 
 export default function Contact() {
   return (
