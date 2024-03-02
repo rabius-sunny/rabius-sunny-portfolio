@@ -11,6 +11,7 @@ import { merge } from '~/lib/utils'
 const maven = Maven_Pro({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://rabius-sunny.vercel.app'),
   title: {
     default: siteInfo.name,
     template: `%s | ${siteInfo.name}`
