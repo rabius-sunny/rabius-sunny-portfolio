@@ -20,7 +20,7 @@ const projects: TProject[] = [
   {
     image: '/images/nextmart.png',
     heading: 'next mart',
-    link: 'https://next-mart.vercel.app/shop',
+    link: 'https://next-mart.netlify.app/shop',
     subheading: 'E-commerce application with cart',
     description:
       'Dynamic e-commerce platform enabling users to discover, sort, and seamlessly add products to their cart for convenient shopping experiences.',
