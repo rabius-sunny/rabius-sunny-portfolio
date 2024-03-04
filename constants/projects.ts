@@ -2,7 +2,7 @@ const projects: TProject[] = [
   {
     image: '/images/roktodata.png',
     heading: 'roktodata',
-    link: 'https://roktodata.vercel.app',
+    link: 'https://roktodata.onrender.com',
     subheading: 'Full-stack Blood Donation Application',
     description:
       'Revolutionary blood donation platform using Modern Techs. Empowers users/donors/admins with profiles, appointment scheduling, donation tracking, and community engagement features for seamless donor-receiver interaction.',
