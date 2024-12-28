@@ -15,6 +15,8 @@ export const skillset: TSkills[] = [
       'reactnative',
       'vuejs',
       'solidjs',
+      'astrojs',
+      'remixjs',
       'redux',
       'framer-motion',
       'nextauth',
@@ -37,6 +39,13 @@ export const skillset: TSkills[] = [
       'mongodb',
       'mysql',
       'postgresql',
+      'prisma',
+      'drizzle-orm',
+      'docker',
+      'aws',
+      'azure',
+      'digitalocean',
+      'vercel',
       'firebase',
       'heroku',
       'netlify'
@@ -78,6 +87,6 @@ export const skillset: TSkills[] = [
     title: 'Familiarity',
     description:
       "I'm also available at some other languages and library/frameworks",
-    skills: ['php', 'laravel', 'electronjs']
+    skills: ['php', 'laravel', 'electronjs', 'shopify']
   }
 ]

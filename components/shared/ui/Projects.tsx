@@ -11,15 +11,22 @@ export default function Projects() {
       <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8'>
         {projects.map((item, idx) => (
           <div key={idx} className='col-auto rounded-lg overflow-hidden'>
-            <Image
-              src={item.image}
-              alt={item.heading}
-              width={300}
-              height={200}
-              className='w-full'
-            />
+            <Link
+              className='block w-full h-72 sm:h-96 xl:h-56'
+              target='_blank'
+              href={item.link}
+            >
+              <Image
+                src={item.image}
+                alt={item.heading}
+                width={300}
+                height={200}
+                className='size-full'
+              />
+            </Link>
             <div className='mt-2'>
               <Link
+                target='_blank'
                 href={item.link}
                 className='font-medium text-2xl uppercase text-heading hover:underline hover:text-main'
               >

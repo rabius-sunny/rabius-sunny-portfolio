@@ -20,7 +20,14 @@ export const siteInfo = {
     'typescript',
     'laravel',
     'vuejs',
-    'react native'
+    'react native',
+    'aws',
+    'docker',
+    'digital ocean',
+    'es6',
+    'javascript',
+    'remix js',
+    'astro js'
   ],
   creator: 'Rabius Sunny',
   publisher: 'Vercel',
