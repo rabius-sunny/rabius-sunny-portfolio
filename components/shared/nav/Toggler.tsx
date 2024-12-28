@@ -13,10 +13,10 @@ const Path = (props: any) => (
 export default function NavToggler({ toggle }: { toggle: any }) {
   return (
     <button
-      className=' outline-none border-none select-none cursor-pointer absolute top-1.5 left-4 size-12 rounded-full flex items-center justify-center'
+      className='outline-none border-none select-none cursor-pointer bg-text absolute top-5 left-7 size-8 rounded-full flex items-center justify-center'
       onClick={toggle}
     >
-      <svg width='30' height='20' viewBox='0 0 23 23'>
+      <svg width='25' height='15' viewBox='0 0 23 23'>
         <Path
           variants={{
             closed: { d: 'M 2 2.5 L 20 2.5' },

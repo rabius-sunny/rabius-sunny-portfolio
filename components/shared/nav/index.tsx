@@ -9,7 +9,7 @@ import Container from '../ui/Container'
 import SideNavbar from './SideNavbar'
 import NavToggler from './Toggler'
 
-const sidebar = {
+const sidebarAnimation = {
   open: (height = 1000) => ({
     clipPath: `circle(${height * 2 + 200}px at 40px 40px)`,
     transition: {
@@ -19,7 +19,7 @@ const sidebar = {
     }
   }),
   closed: {
-    clipPath: 'circle(20px at 40px 40px)',
+    clipPath: 'circle(15px at 32px 35px)',
     transition: {
       delay: 0.5,
       type: 'spring',
@@ -40,12 +40,14 @@ export default function Appbar() {
           aria-label='Global'
         >
           <div className='flex ml-14 md:ml-0'>
-            <Link href='/'>
+            <Link href='/' className='block w-52 h-10 md:h-16 md:w-64'>
               <span className='sr-only'>Rabius Sunny</span>
               <Image
                 src='/images/logo.svg'
                 width={200}
                 height={60}
+                priority
+                className='size-full'
                 alt='logo'
               />
             </Link>
@@ -58,7 +60,7 @@ export default function Appbar() {
             >
               <motion.div
                 className='absolute -top-3 left-0 bottom-0 w-80 bg-text'
-                variants={sidebar}
+                variants={sidebarAnimation}
               />
               <SideNavbar toggle={toggleOpen} />
               <NavToggler toggle={() => toggleOpen()} />
