@@ -12,9 +12,9 @@ export default function Keywords({ items, compact }: TProps) {
         <span
           key={idx}
           className={merge(
-            'font-medium text-xs text-white rounded-full px-2 py-0.5 lg:px-3 lg:py-1 lg:text-sm uppercase',
-            idx % 2 === 0 ? 'bg-sky-500' : 'bg-pink-500',
-            compact && 'px-1.5 py-0.5 text-[0.6rem]'
+            'font-medium text-xs rounded-full px-3 py-1 transition-all duration-300 border backdrop-blur-sm',
+            'bg-white/5 border-white/10 text-white/90 hover:bg-white/10 hover:border-heading/50 hover:text-heading cursor-default hover:-translate-y-0.5',
+            compact ? 'text-[0.6rem] px-2 py-0.5' : 'lg:text-sm'
           )}
         >
           {keyword}

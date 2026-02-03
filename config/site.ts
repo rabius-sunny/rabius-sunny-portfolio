@@ -1,18 +1,24 @@
 export const siteInfo = {
   name: 'Rabius Sunny',
   description:
-    'Official website of Rabius Sunny Rezoan, software developer, frontend engineer and fullstack lover.',
+    'Official portfolio website of Rabius Sunny Rezoan, software engineer, frontend builder, backend developer  and full stack lover.',
   author: {
     name: 'Rabius Sunny',
-    url: 'https://github.com/rabius-sunny'
+    url: 'https://rabiussunny.com'
   },
   generator:
-    'Portfolio website of Frontend Software Engineer Rabius Sunny Rezoan, Expertise in Javascript, Typescript, React, Nextjs, Laravel, Vuejs, React Native, Rabius Sunny Resume, Rabius Sunny portfolio, Rabius Sunny official, frontend engineer in bd',
+    'Portfolio website of Frontend and Backend Software Engineer Rabius Sunny Rezoan, Expert in Javascript, Typescript, React, Nextjs, Laravel, Vuejs, React Native, dokcer, devops, ci-cd, aws, digital ocean, microsoft azure, gcp, cloudeflare, AI, openai, claude, Rabius Sunny Resume, Rabius Sunny portfolio, Rabius Sunny official, frontend engineer in bd',
   applicationName: 'Rabius Sunny Portfolio',
   keywords: [
     'portfolio',
     'rabius sunny ',
     'web developer',
+    'rabius-sunny',
+    'rabiussunny.com',
+    'backend developer',
+    'devops',
+    'full stack developer',
+    'ci-cd',
     'software engineer',
     'frontend developer',
     'reactjs',
@@ -27,17 +33,18 @@ export const siteInfo = {
     'es6',
     'javascript',
     'remix js',
-    'astro js'
+    'astro js',
+    'linux'
   ],
   creator: 'Rabius Sunny',
-  publisher: 'Vercel',
+  publisher: 'Rabius Sunny',
   robots: 'index follow',
   openGraph: {
     type: 'website',
-    url: 'https://rabius-sunny.vercel.app',
+    url: 'https://rabiussunny.com',
     images: [
       {
-        url: '/images/me.png'
+        url: '/images/me-compact.png'
       }
     ]
   },

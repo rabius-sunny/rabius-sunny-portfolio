@@ -16,6 +16,17 @@ const config: Config = {
       sky: colors.sky,
       pink: colors.pink,
       transparent: colors.transparent
+    },
+    extend: {
+      keyframes: {
+        'tiny-bounce': {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-10px)' }
+        }
+      },
+      animation: {
+        'tiny-bounce': 'tiny-bounce 2.5s ease-in-out infinite'
+      }
     }
   },
   plugins: []

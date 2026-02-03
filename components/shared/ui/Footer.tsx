@@ -1,30 +1,49 @@
 import Link from 'next/link'
-import { Facebook, Github, Linkedin } from 'lucide-react'
+import { Facebook, Github, Linkedin, Mail, Twitter } from 'lucide-react'
 
 import Container from './Container'
 
 export default function Footer() {
   return (
-    <footer className='shadow-heading/10 pt-4 pb-2'>
+    <footer className='border-t border-white/5 bg-black/20 backdrop-blur-sm mt-auto'>
       <Container>
-        <div className='flex flex-col items-center gap-2 md:flex-row md:flex-between'>
-          <div className='flex-center gap-4'>
-            <Link href='https://github.com/rabius-sunny'>
-              <Github className='text-heading size-6' />
-            </Link>
-            <Link href='https://fb.com/rabibinsalam'>
-              <Facebook className='text-heading size-6' />
-            </Link>
-            <Link href='https://linkedin.com/in/rabius-sunny'>
-              <Linkedin className='text-heading size-6' />
-            </Link>
+        <div className='py-8 md:py-12'>
+          <div className='flex flex-col md:flex-row items-center justify-between gap-6'>
+            <div className='text-center md:text-left'>
+              <h2 className='text-xl font-bold text-white mb-2'>
+                Rabius Sunny
+              </h2>
+              <p className='text-text/60 text-sm max-w-xs'>
+                Building digital experiences with passion and precision.
+              </p>
+            </div>
+
+            <div className='flex items-center gap-6'>
+              <Link href='https://github.com/rabius-sunny' className='group'>
+                <Github className='text-heading/80 size-6 group-hover:text-white transition-colors group-hover:scale-110 duration-300' />
+              </Link>
+              <Link href='https://fb.com/rabibinsalam' className='group'>
+                <Facebook className='text-heading/80 size-6 group-hover:text-white transition-colors group-hover:scale-110 duration-300' />
+              </Link>
+              <Link
+                href='https://linkedin.com/in/rabius-sunny'
+                className='group'
+              >
+                <Linkedin className='text-heading/80 size-6 group-hover:text-white transition-colors group-hover:scale-110 duration-300' />
+              </Link>
+              <Link href='mailto:contact@rabiussunny.com' className='group'>
+                <Mail className='text-heading/80 size-6 group-hover:text-white transition-colors group-hover:scale-110 duration-300' />
+              </Link>
+            </div>
           </div>
-          <p className='text-sm font-medium'>
-            Copyright @ 2020 - {new Date().getFullYear()}
-          </p>
-        </div>
-        <div className='text-center font-medium text-sm md:text-base mt-2'>
-          Portfolio || Rabius Sunny
+
+          <div className='mt-8 pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between text-xs text-text/40 font-medium'>
+            <p>
+              &copy; {new Date().getFullYear()} Rabius Sunny. All rights
+              reserved.
+            </p>
+            <p className='mt-2 md:mt-0'>Designed & Developed with ❤️</p>
+          </div>
         </div>
       </Container>
     </footer>

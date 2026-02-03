@@ -11,7 +11,7 @@ import { merge } from '~/lib/utils'
 const maven = Maven_Pro({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://rabius-sunny.vercel.app'),
+  metadataBase: new URL('https://rabiussunny.com'),
   title: {
     default: siteInfo.name,
     template: `%s | ${siteInfo.name}`
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   applicationName: siteInfo.applicationName,
   keywords: siteInfo.keywords,
   creator: siteInfo.name,
-  publisher: 'Vercel',
+  publisher: 'Rabius Sunny',
   robots: 'index follow',
   openGraph: {
     title: siteInfo.name,
@@ -38,15 +38,18 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang='en'>
-      <body className={merge(maven.className, 'bg-main')}>
-        <main className=' bg-primary min-h-screen lg:min-h-[96vh] xl:max-w-7xl lg:mx-8 xl:mx-auto text-text lg:my-4 lg:rounded-2xl lg:shadow-inner shadow-heading/30 overflow-hidden'>
+    <html lang='en' className='scroll-smooth'>
+      <body
+        className={merge(
+          maven.className,
+          'bg-primary text-text antialiased selection:bg-heading selection:text-primary'
+        )}
+      >
+        <div className='flex flex-col min-h-screen'>
           <Appbar />
-
-          {children}
-
+          <main className='flex-grow relative overflow-hidden'>{children}</main>
           <Footer />
-        </main>
+        </div>
       </body>
     </html>
   )

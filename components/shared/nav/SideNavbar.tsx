@@ -41,13 +41,13 @@ const MenuItem = ({ item }: { item: TNavItems }) => {
   return (
     <motion.li
       variants={linkVariants}
-      className='p-0 list-none mb-10 flex items-center cursor-pointer'
-      whileHover={{ scale: 1.2 }}
-      whileTap={{ scale: 0.9 }}
+      className='p-0 list-none mb-8 flex items-center cursor-pointer'
+      whileHover={{ scale: 1.1, x: 10 }}
+      whileTap={{ scale: 0.95 }}
     >
       <Link
         href={item.href}
-        className='text-main uppercase font-medium text-2xl'
+        className='text-white hover:text-heading transition-colors uppercase font-bold text-3xl tracking-wide'
       >
         {item.title}
       </Link>
