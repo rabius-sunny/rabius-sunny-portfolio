@@ -37,7 +37,7 @@ export const siteInfo = {
     url: 'https://rabius-sunny.vercel.app',
     images: [
       {
-        url: '/images/photo.jpg'
+        url: '/images/me.png'
       }
     ]
   },

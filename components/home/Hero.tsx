@@ -54,7 +54,7 @@ export default function Hero() {
         </div>
         <div className='col-auto order-first lg:order-last'>
           <Image
-            src='/images/photo.jpg'
+            src='/images/me.png'
             alt='Rabius Sunny Photo'
             width={300}
             height={300}
