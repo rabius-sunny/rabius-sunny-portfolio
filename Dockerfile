@@ -17,7 +17,7 @@ COPY package.json bun.lock ./
 RUN bun install --production --frozen-lockfile
 
 # Copy configuration files
-COPY --chown=nextjs:nodejs next.config.ts ./
+COPY --chown=nextjs:nodejs next.config.mjs ./
 
 # Set proper permissions
 RUN chown -R nextjs:nodejs /app
