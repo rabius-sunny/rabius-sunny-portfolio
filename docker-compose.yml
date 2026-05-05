@@ -1,0 +1,23 @@
+services:
+  me-portfolio:
+    container_name: me-portfolio
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '3003:3003'
+    volumes:
+      - ./.next:/app/.next:rw
+      - ./public:/app/public:ro
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+
+    deploy:
+      resources:
+        limits:
+          cpus: '1.5'
+          memory: 4G
+        reservations:
+          cpus: '1'
+          memory: 2048M
