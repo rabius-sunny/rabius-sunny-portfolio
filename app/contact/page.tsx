@@ -4,7 +4,23 @@ import Container from '~/components/shared/ui/Container'
 export const metadata: Metadata = {
   title: 'Contact me',
   description:
-    'Contact with Rabius Sunny Rezoan, software developer, frontend engineer and fullstack lover. Send message to Rabius Sunny. Your message is always valuable to me'
+    'Contact with Rabius Sunny Rezoan, software developer, frontend engineer and fullstack lover. Send message to Rabius Sunny. Your message is always valuable to me.',
+  alternates: {
+    canonical: 'https://rabiussunny.com/contact'
+  },
+  openGraph: {
+    title: 'Contact me | Rabius Sunny',
+    description:
+      'Contact with Rabius Sunny Rezoan, software developer, frontend engineer and fullstack lover. Send message to Rabius Sunny. Your message is always valuable to me.',
+    url: 'https://rabiussunny.com/contact',
+    type: 'website'
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Contact me | Rabius Sunny',
+    description:
+      'Contact with Rabius Sunny Rezoan, software developer, frontend engineer and fullstack lover. Send message to Rabius Sunny. Your message is always valuable to me.'
+  }
 }
 
 export default function Contact() {

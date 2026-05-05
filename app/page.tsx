@@ -1,6 +1,21 @@
+import type { Metadata } from 'next'
 import Hero from '~/components/home/Hero'
 import MyProjects from '~/components/home/MyProjects'
 import Skills from '~/components/home/Skills'
+import { siteInfo } from '~/config/site'
+
+export const metadata: Metadata = {
+  title: siteInfo.name,
+  description: siteInfo.description,
+  alternates: {
+    canonical: 'https://rabiussunny.com'
+  },
+  openGraph: {
+    ...siteInfo.openGraph,
+    title: siteInfo.name,
+    description: siteInfo.description
+  }
+}
 
 export default function Home() {
   return (

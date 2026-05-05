@@ -1,17 +1,18 @@
 export const siteInfo = {
   name: 'Rabius Sunny',
   description:
-    'Official portfolio website of Rabius Sunny Rezoan, software engineer, frontend builder, backend developer  and full stack lover.',
+    'Official portfolio website of Rabius Sunny Rezoan, software engineer, frontend builder, backend developer and full stack lover.',
   author: {
     name: 'Rabius Sunny',
     url: 'https://rabiussunny.com'
   },
-  generator:
-    'Portfolio website of Frontend and Backend Software Engineer Rabius Sunny Rezoan, Expert in Javascript, Typescript, React, Nextjs, Laravel, Vuejs, React Native, dokcer, devops, ci-cd, aws, digital ocean, microsoft azure, gcp, cloudeflare, AI, openai, claude, Rabius Sunny Resume, Rabius Sunny portfolio, Rabius Sunny official, frontend engineer in bd',
+  generator: 'Next.js',
   applicationName: 'Rabius Sunny Portfolio',
+  twitterHandle: '@muhammadrsdev',
+  locale: 'en_US',
   keywords: [
     'portfolio',
-    'rabius sunny ',
+    'rabius sunny',
     'web developer',
     'rabius-sunny',
     'rabiussunny.com',
@@ -34,17 +35,29 @@ export const siteInfo = {
     'javascript',
     'remix js',
     'astro js',
-    'linux'
+    'linux',
+    'cloud engineering',
+    'azure',
+    'gcp',
+    'cloudflare',
+    'openai',
+    'ai engineer',
+    'postgresql',
+    'mongodb',
+    'prisma',
+    'node.js'
   ],
   creator: 'Rabius Sunny',
   publisher: 'Rabius Sunny',
-  robots: 'index follow',
   openGraph: {
     type: 'website',
     url: 'https://rabiussunny.com',
     images: [
       {
-        url: '/images/me-compact.png'
+        url: '/images/me-compact.png',
+        width: 1200,
+        height: 630,
+        alt: 'Rabius Sunny — Full Stack Software Engineer'
       }
     ]
   },
