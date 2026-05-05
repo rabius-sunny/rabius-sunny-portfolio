@@ -44,10 +44,10 @@ export default function Appbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4 border-b ${
         scrolled
-          ? 'bg-primary/80 backdrop-blur-lg border-white/5 py-3'
-          : 'bg-transparent border-transparent py-5'
+          ? 'bg-primary/80 backdrop-blur-lg border-white/10'
+          : 'bg-transparent border-transparent'
       }`}
     >
       <Container>
@@ -63,7 +63,7 @@ export default function Appbar() {
                 width={200}
                 height={60}
                 priority
-                className='size-full pb-2 md:pb-3'
+                className='size-full'
                 alt='logo'
               />
             </Link>

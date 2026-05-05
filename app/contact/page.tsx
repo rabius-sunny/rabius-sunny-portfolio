@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function Contact() {
   return (
     <Container>
-      <div className='max-w-md mx-auto min-h-[80vh]'>
+      <div className='max-w-md mx-auto min-h-[80vh] pt-24'>
         <h2 className='text-center my-10'>
           Your message is always valuable to me
         </h2>
