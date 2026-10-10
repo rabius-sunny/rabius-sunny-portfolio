@@ -1,64 +1,151 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import React from 'react'
 import {
   Code2,
   Monitor,
   Package,
   Server,
-  Sparkles,
+  Star,
   Terminal
 } from 'lucide-react'
+import { TSkillGroup } from '~/constants/skillset'
 
-import Keywords from '../shared/ui/Keywords'
+import {
+  AnimationsIcon,
+  BootstrapIcon,
+  ChartsIcon,
+  ContextApiIcon,
+  Css3Icon,
+  DockerIcon,
+  ElectronIcon,
+  Es6Icon,
+  ExpressjsIcon,
+  FigmaIcon,
+  FirebaseIcon,
+  FormHandlersIcon,
+  FramerMotionIcon,
+  GitIcon,
+  GithubIcon,
+  Html5Icon,
+  JsIcon,
+  LaravelIcon,
+  MongodbIcon,
+  MysqlIcon,
+  NextjsIcon,
+  NodejsIcon,
+  PhpIcon,
+  PostgresqlIcon,
+  PostmanIcon,
+  PrismaIcon,
+  ReactHooksIcon,
+  ReactIcon,
+  ReactRouterIcon,
+  ReduxIcon,
+  ShopifyIcon,
+  TailwindIcon,
+  TsIcon,
+  VercelIcon,
+  VscodeIcon
+} from './SkillIcons'
 
-const iconMap: Record<string, any> = {
-  Languages: Code2,
-  'Frontend development': Monitor,
-  'Backend development': Server,
-  'Productivity Tools': Terminal,
-  'Utility Packages': Package,
-  Familiarity: Sparkles
+const headerIconMap: Record<string, React.ReactNode> = {
+  code: <Code2 className='size-5 text-[#00d8f6]' />,
+  monitor: <Monitor className='size-5 text-[#00d8f6]' />,
+  server: <Server className='size-5 text-[#00d8f6]' />,
+  package: <Package className='size-5 text-[#00d8f6]' />,
+  terminal: <Terminal className='size-5 text-[#00d8f6]' />,
+  star: <Star className='size-5 text-[#00d8f6]' />
+}
+
+const skillIconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+  html5: Html5Icon,
+  css3: Css3Icon,
+  javascript: JsIcon,
+  typescript: TsIcon,
+  es6: Es6Icon,
+  php: PhpIcon,
+  reactjs: ReactIcon,
+  nextjs: NextjsIcon,
+  tailwindcss: TailwindIcon,
+  redux: ReduxIcon,
+  'framer-motion': FramerMotionIcon,
+  bootstrap: BootstrapIcon,
+  nodejs: NodejsIcon,
+  expressjs: ExpressjsIcon,
+  mongodb: MongodbIcon,
+  mysql: MysqlIcon,
+  postgresql: PostgresqlIcon,
+  prisma: PrismaIcon,
+  reactrouter: ReactRouterIcon,
+  reacthooks: ReactHooksIcon,
+  context: ContextApiIcon,
+  charts: ChartsIcon,
+  animations: AnimationsIcon,
+  formhandlers: FormHandlersIcon,
+  git: GitIcon,
+  github: GithubIcon,
+  docker: DockerIcon,
+  vscode: VscodeIcon,
+  figma: FigmaIcon,
+  postman: PostmanIcon,
+  laravel: LaravelIcon,
+  electronjs: ElectronIcon,
+  shopify: ShopifyIcon,
+  firebase: FirebaseIcon,
+  vercel: VercelIcon
 }
 
 export default function SkillCard({
-  skill,
-  index
+  skill
 }: {
-  skill: TSkills
+  skill: TSkillGroup
   index: number
 }) {
-  const Icon = iconMap[skill.title] || Code2
+  const HeaderIcon = headerIconMap[skill.headerIcon] || (
+    <Code2 className='size-5 text-[#00d8f6]' />
+  )
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: index * 0.1, duration: 0.5 }}
-      whileHover={{ y: -5 }}
-      className='bg-white/5 backdrop-blur-sm border border-white/5 p-6 md:p-8 rounded-3xl hover:border-heading/30 hover:bg-white/10 transition-all duration-300 group relative overflow-hidden'
-    >
-      <div className='absolute top-0 right-0 p-3 opacity-5 group-hover:opacity-10 transition-opacity transform group-hover:scale-110'>
-        <Icon size={120} />
-      </div>
-
-      <div className='flex items-center gap-4 mb-6'>
-        <div className='p-3 rounded-xl bg-gradient-to-br from-heading/20 to-main/20 text-heading border border-heading/20 group-hover:scale-110 transition-transform duration-300'>
-          <Icon size={28} />
+    <div className='bg-[#04162a] border border-[#0f2c4f] hover:border-[#00d8f6]/40 rounded-2xl p-6 transition-all duration-300 hover:shadow-[0_12px_36px_rgba(0,216,246,0.1)] hover:-translate-y-1 flex flex-col group'>
+      {/* Card Header: Icon + Title */}
+      <div className='flex items-center gap-3.5 mb-2'>
+        <div className='size-10 rounded-xl bg-[#00d8f6]/10 border border-[#00d8f6]/30 flex items-center justify-center shrink-0 shadow-sm shadow-[#00d8f6]/10 group-hover:scale-105 transition-transform'>
+          {HeaderIcon}
         </div>
-        <h3 className='text-2xl font-bold text-white group-hover:text-heading transition-colors'>
+        <h3 className='text-lg font-bold text-white tracking-wide group-hover:text-[#00d8f6] transition-colors'>
           {skill.title}
         </h3>
       </div>
 
-      <p className='text-text/70 mb-6 text-sm leading-relaxed min-h-[40px]'>
+      {/* Description */}
+      <p className='text-slate-400 text-xs sm:text-sm leading-relaxed mt-2 mb-6 min-h-[38px]'>
         {skill.description}
       </p>
 
-      <div className='pt-6 border-t border-white/5'>
-        <Keywords items={skill.skills} />
+      {/* 3x2 Grid of Icons + Labels */}
+      <div className='grid grid-cols-3 gap-y-5 gap-x-2 items-center justify-items-center mt-auto pt-4 border-t border-[#0f2c4f]/60'>
+        {skill.items.map((item, itemIdx) => {
+          const IconComponent = skillIconMap[item.iconKey]
+          return (
+            <div
+              key={itemIdx}
+              className='flex flex-col items-center justify-center gap-1.5 w-full hover:scale-110 transition-transform duration-200 cursor-default'
+            >
+              <div className='size-8 flex items-center justify-center'>
+                {IconComponent ? (
+                  <IconComponent className='size-7' />
+                ) : (
+                  <Code2 className='size-6 text-[#00d8f6]' />
+                )}
+              </div>
+              <span className='text-[11px] sm:text-xs text-slate-300 font-medium text-center truncate max-w-[85px]'>
+                {item.name}
+              </span>
+            </div>
+          )
+        })}
       </div>
-    </motion.div>
+    </div>
   )
 }

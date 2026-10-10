@@ -1,53 +1,79 @@
+'use client'
+
 import Image from 'next/image'
 import Link from 'next/link'
+import { ExternalLink } from 'lucide-react'
 import projects from '~/constants/projects'
 
 import Container from './Container'
-import Keywords from './Keywords'
 
 export default function Projects() {
   return (
     <Container>
-      <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8'>
+      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
         {projects.map((item, idx) => (
           <div
             key={idx}
-            className='group bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:border-heading/50 transition-all duration-300 hover:shadow-xl hover:shadow-heading/10 flex flex-col'
+            className='bg-[#04162a] border border-[#0f2c4f] hover:border-[#00d8f6]/50 rounded-2xl p-5 flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_36px_rgba(0,216,246,0.12)] group'
           >
+            {/* Project Image */}
             <Link
-              className='block w-full h-56 sm:h-64 xl:h-56 overflow-hidden relative'
-              target='_blank'
               href={item.link}
+              target='_blank'
+              rel='noopener noreferrer'
+              className='block relative aspect-[16/10] rounded-xl overflow-hidden mb-4 bg-[#020b14]'
             >
               <Image
                 src={item.image}
                 alt={item.heading}
                 fill
-                className='object-cover transition-transform duration-500 group-hover:scale-110'
+                sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+                className='object-cover group-hover:scale-105 transition-transform duration-500'
               />
-              <div className='absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-300' />
+              <div className='absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-300' />
             </Link>
 
-            <div className='p-6 flex flex-col flex-1'>
-              <div className='mb-auto'>
-                <Link
-                  target='_blank'
-                  href={item.link}
-                  className='block font-bold text-xl uppercase text-white group-hover:text-heading transition-colors'
-                >
-                  {item.heading}
-                </Link>
-                <p className='text-heading/80 text-sm font-medium mb-3 mt-1'>
-                  {item.subheading}
-                </p>
-                <p className='text-text/70 text-sm leading-relaxed mb-4 line-clamp-3'>
-                  {item.description}
-                </p>
-              </div>
+            {/* Header Meta: Category + External Link */}
+            <div className='flex items-center justify-between mb-1.5'>
+              <span className='text-[11px] font-bold tracking-wider text-[#00d8f6] uppercase'>
+                {item.subheading}
+              </span>
+              <Link
+                href={item.link}
+                target='_blank'
+                rel='noopener noreferrer'
+                className='text-slate-400 group-hover:text-[#00d8f6] transition-colors p-1'
+                aria-label={`Open ${item.heading} project in new tab`}
+              >
+                <ExternalLink className='size-4' />
+              </Link>
+            </div>
 
-              <div className='pt-4 border-t border-white/10 mt-2'>
-                <Keywords items={item.keywords} compact />
-              </div>
+            {/* Title */}
+            <Link
+              href={item.link}
+              target='_blank'
+              rel='noopener noreferrer'
+              className='block font-bold text-lg sm:text-xl text-white tracking-wide uppercase mb-2 group-hover:text-[#00d8f6] transition-colors'
+            >
+              {item.heading}
+            </Link>
+
+            {/* Description */}
+            <p className='text-slate-400 text-xs sm:text-sm leading-relaxed mb-6 flex-1'>
+              {item.description}
+            </p>
+
+            {/* Tech Tags */}
+            <div className='flex items-center gap-2 flex-wrap pt-2 mt-auto'>
+              {item.keywords.map((kw, kwIdx) => (
+                <span
+                  key={kwIdx}
+                  className='text-xs text-slate-300 bg-[#071d38] border border-[#133560] px-3 py-1 rounded-full font-medium'
+                >
+                  {kw}
+                </span>
+              ))}
             </div>
           </div>
         ))}

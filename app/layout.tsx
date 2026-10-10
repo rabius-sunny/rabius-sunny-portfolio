@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Maven_Pro } from 'next/font/google'
+import { Inter } from 'next/font/google'
 
 import './globals.css'
 
@@ -9,7 +9,7 @@ import Footer from '~/components/shared/ui/Footer'
 import { siteInfo } from '~/config/site'
 import { merge } from '~/lib/utils'
 
-const maven = Maven_Pro({ subsets: ['latin'], display: 'swap' })
+const inter = Inter({ subsets: ['latin'], display: 'swap' })
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://rabiussunny.com'),
@@ -74,8 +74,8 @@ export default function RootLayout({
     <html lang='en' className='scroll-smooth'>
       <body
         className={merge(
-          maven.className,
-          'bg-primary text-text antialiased selection:bg-heading selection:text-primary'
+          inter.className,
+          'bg-[#011224] text-slate-100 antialiased selection:bg-[#00d8f6] selection:text-[#011224]'
         )}
       >
         <PersonSchema />

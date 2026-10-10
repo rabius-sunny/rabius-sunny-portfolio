@@ -62,9 +62,9 @@ export const siteInfo = {
     ]
   },
   navItems: [
-    { title: 'resume', href: 'https://github.com/rabius-sunny' },
-    { title: 'project', href: '/projects' },
-    { title: 'blog', href: 'https://github.com/rabius-sunny' },
-    { title: 'contact', href: '/contact' }
+    { title: 'Projects', href: '#projects' },
+    { title: 'Skills', href: '#skills' },
+    { title: 'About', href: '#about' },
+    { title: 'Contact', href: '#contact' }
   ]
 }

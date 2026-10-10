@@ -1,5 +1,4 @@
 import type { Config } from 'tailwindcss'
-import colors from 'tailwindcss/colors'
 
 const config: Config = {
   content: [
@@ -7,17 +6,16 @@ const config: Config = {
     './app/**/*.{js,ts,jsx,tsx,mdx}'
   ],
   theme: {
-    colors: {
-      primary: '#002a32',
-      main: '#0051a5',
-      text: '#a4d2d6',
-      heading: '#00d6d6',
-      white: colors.white,
-      sky: colors.sky,
-      pink: colors.pink,
-      transparent: colors.transparent
-    },
     extend: {
+      colors: {
+        primary: '#011224',
+        card: '#04162a',
+        'card-border': '#0f2c4f',
+        accent: '#00d8f6',
+        heading: '#00d8f6',
+        main: '#00a8e8',
+        text: '#94a3b8'
+      },
       keyframes: {
         'tiny-bounce': {
           '0%, 100%': { transform: 'translateY(0)' },

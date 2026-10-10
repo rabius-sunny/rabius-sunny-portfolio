@@ -3,290 +3,166 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { ArrowDown, Sparkles } from 'lucide-react'
-import TypewriterComponent from 'typewriter-effect'
+import {
+  ArrowRight,
+  Code2,
+  Download,
+  Folder,
+  Layers,
+  Users,
+  Zap
+} from 'lucide-react'
 
 import Container from '../shared/ui/Container'
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.2
-    }
-  }
-}
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
-  }
-}
-
-const floatVariants = {
-  animate: {
-    y: [-10, 10, -10],
-    rotate: [0, 5, -5, 0],
-    transition: {
-      duration: 6,
-      repeat: Infinity,
-      ease: 'easeInOut'
-    }
-  }
-}
-
-const pulseVariants = {
-  animate: {
-    scale: [1, 1.05, 1],
-    opacity: [0.3, 0.5, 0.3],
-    transition: {
-      duration: 4,
-      repeat: Infinity,
-      ease: 'easeInOut'
-    }
-  }
-}
-
 export default function Hero() {
   return (
-    <section className='relative overflow-hidden'>
-      {/* Animated Background Shapes */}
-      <div className='absolute inset-0 -z-10 overflow-hidden'>
-        {/* Top-right gradient blob */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.5, ease: 'easeOut' }}
-          className='absolute -top-40 -right-40 w-[600px] h-[600px] bg-gradient-to-br from-heading/30 via-main/20 to-transparent rounded-full blur-[100px]'
-        />
-
-        {/* Bottom-left gradient blob */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.5, delay: 0.3, ease: 'easeOut' }}
-          className='absolute -bottom-40 -left-40 w-[500px] h-[500px] bg-gradient-to-tr from-main/30 via-heading/10 to-transparent rounded-full blur-[80px]'
-        />
-
-        {/* Floating decorative shapes */}
-        <motion.div
-          variants={floatVariants}
-          animate='animate'
-          className='absolute top-1/4 left-[15%] w-20 h-20 border border-heading/20 rounded-2xl rotate-12'
-        />
-        <motion.div
-          variants={floatVariants}
-          animate='animate'
-          style={{ animationDelay: '1s' }}
-          className='absolute top-1/3 right-[20%] w-16 h-16 bg-gradient-to-br from-heading/10 to-main/10 rounded-full'
-        />
-        <motion.div
-          variants={floatVariants}
-          animate='animate'
-          style={{ animationDelay: '2s' }}
-          className='absolute bottom-1/4 left-[10%] w-12 h-12 border border-main/20 rounded-full'
-        />
-
-        {/* Grid pattern overlay */}
-        <div className='absolute inset-0 bg-[linear-gradient(rgba(0,214,214,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,214,214,0.03)_1px,transparent_1px)] bg-[size:60px_60px]' />
-      </div>
+    <section id='about' className='relative pt-32 pb-20 lg:pt-44 lg:pb-32 overflow-hidden'>
+      {/* Background Ambient Glows */}
+      <div className='absolute top-1/4 -left-48 w-96 h-96 bg-[#00d8f6]/10 rounded-full blur-[140px] pointer-events-none -z-10' />
+      <div className='absolute top-20 right-1/4 w-[500px] h-[500px] bg-[#0077b6]/20 rounded-full blur-[150px] pointer-events-none -z-10' />
+      <div className='absolute top-1/3 right-10 w-[420px] h-[420px] bg-[#00d8f6]/15 rounded-full blur-[120px] pointer-events-none -z-10' />
 
       <Container>
-        <div className='grid grid-cols-1 pb-16 pt-32 lg:pb-28 lg:pt-48 lg:grid-cols-2 gap-12 lg:gap-16 items-center'>
+        <div className='grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center'>
+          {/* Left Column: Text & Actions */}
           <motion.div
-            variants={containerVariants}
-            initial='hidden'
-            animate='visible'
-            className='col-auto text-center lg:text-start'
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className='lg:col-span-7 flex flex-col items-start'
           >
-            {/* Badge */}
-            <motion.div variants={itemVariants} className='mb-6'>
-              <span className='inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-heading/10 to-main/10 border border-heading/20 backdrop-blur-sm'>
-                <Sparkles className='w-4 h-4 text-heading' />
-                <span className='text-heading text-sm font-medium tracking-wide'>
-                  Welcome to my portfolio
-                </span>
+            {/* Top Badge */}
+            <div className='inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-[#041a2e]/90 border border-[#00d8f6]/30 backdrop-blur-md mb-6 shadow-sm shadow-[#00d8f6]/10'>
+              <span className='size-2 rounded-full bg-[#00d8f6] shadow-[0_0_8px_#00d8f6] animate-pulse' />
+              <span className='text-[11px] sm:text-xs font-bold tracking-wider text-[#00d8f6] uppercase'>
+                WELCOME TO MY PORTFOLIO
               </span>
-            </motion.div>
+            </div>
 
-            {/* Name */}
-            <motion.h1
-              variants={itemVariants}
-              className='font-bold mb-6 text-5xl lg:text-7xl xl:text-8xl tracking-tight'
-            >
-              <span className='block text-white'>Rabius</span>
-              <span className='relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-heading via-sky-400 to-main'>
-                Sunny
-                <motion.span
-                  initial={{ scaleX: 0 }}
-                  animate={{ scaleX: 1 }}
-                  transition={{
-                    delay: 1,
-                    duration: 0.8,
-                    ease: [0.22, 1, 0.36, 1]
-                  }}
-                  className='absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-heading to-main origin-left rounded-full'
-                />
-              </span>
-            </motion.h1>
+            {/* Main Headline */}
+            <h1 className='text-4xl sm:text-6xl lg:text-[68px] font-bold tracking-tight text-white leading-[1.08] mb-6'>
+              Building digital
+              <br />
+              experiences that
+              <br />
+              work <span className='text-[#00d8f6]'>beautifully.</span>
+            </h1>
 
-            {/* Typewriter */}
-            <motion.div variants={itemVariants} className='h-12 mb-8'>
-              <div className='flex items-center justify-center lg:justify-start gap-3'>
-                <span className='w-8 h-[2px] bg-gradient-to-r from-heading to-transparent rounded-full' />
-                <TypewriterComponent
-                  component='h2'
-                  options={{
-                    wrapperClassName:
-                      'font-medium text-xl lg:text-2xl text-text',
-                    cursorClassName:
-                      'text-heading font-medium text-xl lg:text-2xl',
-                    strings: [
-                      'Frontend Developer',
-                      'Software Engineer',
-                      'Backend Developer',
-                      'Full Stack Developer'
-                    ],
-                    autoStart: true,
-                    loop: true,
-                    delay: 40,
-                    deleteSpeed: 30
-                  }}
-                />
-              </div>
-            </motion.div>
+            {/* Sub-headline: Name & Role */}
+            <div className='mb-6'>
+              <h2 className='text-3xl sm:text-4xl font-bold text-white tracking-tight mb-2'>
+                Rabius Sunny
+              </h2>
+              <p className='text-xs sm:text-sm font-semibold tracking-[0.22em] uppercase text-slate-400'>
+                Full Stack Developer
+              </p>
+            </div>
 
-            {/* Description */}
-            <motion.p
-              variants={itemVariants}
-              className='font-normal text-base lg:text-lg leading-relaxed text-text/70 max-w-xl mx-auto lg:mx-0 mb-10'
-            >
+            {/* Bio Paragraph */}
+            <p className='text-slate-400 text-sm sm:text-base leading-relaxed max-w-xl mb-8'>
               Full Stack Developer passionate about crafting seamless digital
               experiences. Skilled in frontend, backend, DevOps, and cloud
               infrastructure. Turning ideas into high-performance applications.
-            </motion.p>
+            </p>
 
-            {/* Buttons */}
-            <motion.div
-              variants={itemVariants}
-              className='flex flex-col sm:flex-row gap-4 justify-center lg:justify-start'
-            >
-              <motion.a
-                whileHover={{
-                  scale: 1.05,
-                  boxShadow: '0 0 30px rgba(0,214,214,0.4)'
-                }}
-                whileTap={{ scale: 0.95 }}
-                href='https://drive.google.com/uc?export=download&id=1ngEur21wHY9BfKTjTMREUpYhjE9F5jY8'
-                className='relative btn bg-gradient-to-r from-heading to-main text-white font-semibold border-none overflow-hidden group'
+            {/* Action Buttons */}
+            <div className='flex flex-wrap items-center gap-4 mb-10'>
+              <Link
+                href='#projects'
+                className='inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#00c5e8] hover:bg-[#38bdf8] text-[#011427] font-semibold text-sm transition-all duration-300 shadow-lg shadow-[#00c5e8]/25 hover:shadow-[#00c5e8]/40 hover:-translate-y-0.5'
               >
-                <span className='relative z-10'>Download Resume</span>
-                <motion.span className='absolute inset-0 bg-gradient-to-r from-main to-heading opacity-0 group-hover:opacity-100 transition-opacity duration-300' />
-              </motion.a>
-              <Link href='/contact'>
-                <motion.span
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className='btn block border-2 border-heading/30 bg-transparent text-heading hover:bg-heading/10 hover:border-heading font-semibold transition-all duration-300'
-                >
-                  Contact Me
-                </motion.span>
+                <Folder className='size-4' />
+                <span>View Projects</span>
+                <ArrowRight className='size-4' />
               </Link>
-            </motion.div>
 
-            {/* Scroll indicator */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.5 }}
-              className='hidden lg:flex items-center gap-2 mt-16 text-text/50'
-            >
-              <motion.div
-                animate={{ y: [0, 8, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
+              <a
+                href='https://drive.google.com/uc?export=download&id=1ngEur21wHY9BfKTjTMREUpYhjE9F5jY8'
+                className='inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#04172b]/80 hover:bg-[#072444] border border-[#00d8f6]/50 text-white font-medium text-sm transition-all duration-300 hover:-translate-y-0.5'
               >
-                <ArrowDown className='w-5 h-5' />
-              </motion.div>
-              <span className='text-sm'>Scroll to explore</span>
-            </motion.div>
+                <Download className='size-4' />
+                <span>Download Resume</span>
+              </a>
+            </div>
+
+            {/* Highlights List with Dividers */}
+            <div className='flex flex-wrap items-center gap-3 sm:gap-5 pt-2 text-slate-300'>
+              <div className='flex items-center gap-2 text-xs sm:text-sm font-medium'>
+                <Code2 className='size-4 text-[#00d8f6]' />
+                <span>Clean Code</span>
+              </div>
+              <span className='hidden sm:block h-3.5 w-[1px] bg-slate-700/60' />
+              <div className='flex items-center gap-2 text-xs sm:text-sm font-medium'>
+                <Zap className='size-4 text-[#00d8f6]' />
+                <span>Modern Stack</span>
+              </div>
+              <span className='hidden sm:block h-3.5 w-[1px] bg-slate-700/60' />
+              <div className='flex items-center gap-2 text-xs sm:text-sm font-medium'>
+                <Layers className='size-4 text-[#00d8f6]' />
+                <span>Scalable Solutions</span>
+              </div>
+              <span className='hidden sm:block h-3.5 w-[1px] bg-slate-700/60' />
+              <div className='flex items-center gap-2 text-xs sm:text-sm font-medium'>
+                <Users className='size-4 text-[#00d8f6]' />
+                <span>Real World Impact</span>
+              </div>
+            </div>
           </motion.div>
 
-          {/* Image Section */}
+          {/* Right Column: Photo Card with Layered Effects */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
-            animate={{ opacity: 1, scale: 1, rotate: 0 }}
-            transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className='col-auto order-first lg:order-last relative flex justify-center'
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className='lg:col-span-5 relative flex justify-center items-center'
           >
-            {/* Pulsating glow behind */}
-            <motion.div
-              variants={pulseVariants}
-              animate='animate'
-              className='absolute inset-0 bg-gradient-to-tr from-heading via-main to-heading rounded-full blur-[80px] opacity-30'
-            />
+            <div className='relative w-[290px] sm:w-[350px] lg:w-[380px]'>
+              {/* Layer 1: Vibrant glowing fluid shape behind top-right */}
+              <div className='absolute -top-6 -right-6 w-48 h-48 bg-gradient-to-br from-[#00d8f6] to-[#0066cc] rounded-[44px] rotate-[-10deg] blur-[2px] opacity-80 -z-10' />
 
-            {/* Orbiting ring */}
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-              className='absolute w-[350px] h-[350px] lg:w-[480px] lg:h-[480px] border border-dashed border-heading/20 rounded-full'
-            />
+              {/* Layer 2: Dot matrix on the right */}
+              <div className='absolute -top-4 -right-12 z-0 hidden sm:grid grid-cols-4 gap-2 opacity-35'>
+                {Array.from({ length: 32 }).map((_, i) => (
+                  <span
+                    key={i}
+                    className='size-1 rounded-full bg-[#00d8f6]'
+                  />
+                ))}
+              </div>
 
-            {/* Secondary orbiting ring */}
-            <motion.div
-              animate={{ rotate: -360 }}
-              transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
-              className='absolute w-[320px] h-[320px] lg:w-[440px] lg:h-[440px] border border-heading/10 rounded-full'
-            >
-              <div className='absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-heading rounded-full' />
-              <div className='absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-2 h-2 bg-main rounded-full' />
-            </motion.div>
+              {/* Layer 3: Secondary tilted glass frame behind */}
+              <div className='absolute inset-0 bg-[#051a33]/60 border border-[#00d8f6]/30 rounded-[32px] -rotate-3 -z-10 backdrop-blur-sm' />
 
-            <motion.div
-              animate={{
-                y: [-8, 8, -8],
-                rotate: [-2, 2, -2]
-              }}
-              transition={{
-                duration: 5,
-                repeat: Infinity,
-                ease: 'easeInOut'
-              }}
-              className='relative w-[280px] h-[280px] lg:w-[380px] lg:h-[380px]'
-            >
-              {/* Decorative shapes around image */}
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 15, repeat: Infinity, ease: 'linear' }}
-                className='absolute -top-4 -right-4 w-8 h-8 bg-gradient-to-br from-heading to-main rounded-lg'
-              />
-              <motion.div
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className='absolute -bottom-2 -left-2 w-6 h-6 border-2 border-heading rounded-full'
-              />
-
-              {/* Background frame */}
-              <div className='absolute inset-0 border-2 border-white/10 rounded-[2rem] rotate-6 bg-gradient-to-br from-white/5 to-transparent'></div>
-
-              {/* Main image container */}
-              <div className='absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-[2rem] -rotate-3 overflow-hidden shadow-2xl border border-white/20'>
+              {/* Layer 4: Main photo container */}
+              <div className='relative aspect-[4/5] rounded-[28px] overflow-hidden border border-[#00d8f6]/40 shadow-[0_12px_45px_rgba(0,180,255,0.25)] bg-[#031527]'>
                 <Image
                   src='/images/me.png'
-                  alt='Rabius Sunny Photo'
+                  alt='Rabius Sunny'
                   fill
-                  className='object-cover'
+                  sizes='(max-width: 768px) 320px, 420px'
                   priority
+                  className='object-cover object-top'
                 />
-                {/* Overlay gradient */}
-                <div className='absolute inset-0 bg-gradient-to-t from-primary/50 via-transparent to-transparent' />
+
+                {/* Subtle bottom vignette */}
+                <div className='absolute inset-0 bg-gradient-to-t from-[#011224]/50 via-transparent to-transparent pointer-events-none' />
+
+                {/* Inner border glow */}
+                <div className='absolute inset-0 rounded-[28px] border border-white/10 pointer-events-none' />
               </div>
-            </motion.div>
+
+              {/* Layer 5: Signature overlaid on bottom right */}
+              <div className='absolute -bottom-6 -right-6 z-20 pointer-events-none'>
+                <Image
+                  src='/images/signature.png'
+                  alt='Rabius Sunny Signature'
+                  width={210}
+                  height={98}
+                  className='drop-shadow-[0_4px_12px_rgba(0,216,246,0.6)] rotate-[-6deg]'
+                />
+              </div>
+            </div>
           </motion.div>
         </div>
       </Container>
