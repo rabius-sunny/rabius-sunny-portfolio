@@ -10,8 +10,8 @@ const contactItems = [
   {
     icon: Mail,
     label: 'Email',
-    value: 'rabius.sunny@example.com',
-    href: 'mailto:contact@rabiussunny.com'
+    value: 'rabiussunny10@gmail.com',
+    href: 'mailto:rabiussunny10@gmail.com'
   },
   {
     icon: Linkedin,
@@ -22,7 +22,7 @@ const contactItems = [
   {
     icon: Github,
     label: 'GitHub',
-    value: 'github.com/rabiussunny',
+    value: 'github.com/rabius-sunny',
     href: 'https://github.com/rabius-sunny'
   }
 ]
@@ -52,8 +52,8 @@ export default function ContactCta() {
 
             <p className='text-slate-400 text-sm sm:text-base leading-relaxed max-w-lg mt-5'>
               I&apos;m always open to discussing new opportunities, interesting
-              projects, or just having a chat about technology. Feel free to reach
-              out!
+              projects, or just having a chat about technology. Feel free to
+              reach out!
             </p>
           </div>
 
@@ -73,8 +73,14 @@ export default function ContactCta() {
                   <div key={idx}>
                     <Link
                       href={item.href}
-                      target={item.href.startsWith('http') ? '_blank' : undefined}
-                      rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                      target={
+                        item.href.startsWith('http') ? '_blank' : undefined
+                      }
+                      rel={
+                        item.href.startsWith('http')
+                          ? 'noopener noreferrer'
+                          : undefined
+                      }
                       className='bg-[#04162a] border border-[#0f2c4f] hover:border-[#00d8f6]/50 rounded-2xl p-4 sm:p-5 flex items-center justify-between gap-4 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(0,216,246,0.12)] hover:-translate-y-0.5 group'
                     >
                       <div className='flex items-center gap-4 min-w-0'>
