@@ -1,0 +1,22 @@
+---
+import ContactCta from '../components/ContactCta.astro'
+import Hero from '../components/Hero.astro'
+import MyProjects from '../components/MyProjects.astro'
+import Skills from '../components/Skills.astro'
+import { siteInfo } from '../data/site'
+import Base from '../layouts/Base.astro'
+---
+
+<Base title={siteInfo.name} canonical='https://rabiussunny.com'>
+  <div class='relative overflow-hidden bg-[#011224] text-slate-100'>
+    <!-- Ambient background glows -->
+    <div class='absolute top-0 left-1/4 -translate-x-1/2 w-[600px] h-[600px] bg-[#00d8f6]/5 rounded-full blur-[160px] pointer-events-none -z-10'></div>
+    <div class='absolute top-1/3 right-0 w-[500px] h-[500px] bg-[#0077b6]/10 rounded-full blur-[180px] pointer-events-none -z-10'></div>
+    <div class='absolute bottom-1/4 left-0 w-[500px] h-[500px] bg-[#00d8f6]/5 rounded-full blur-[160px] pointer-events-none -z-10'></div>
+
+    <Hero />
+    <MyProjects />
+    <Skills />
+    <ContactCta />
+  </div>
+</Base>

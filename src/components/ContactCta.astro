@@ -1,0 +1,110 @@
+---
+import Container from './Container.astro'
+import Icon from './Icon.astro'
+
+const contactItems = [
+  {
+    icon: 'mail',
+    label: 'Email',
+    value: 'rabiussunny10@gmail.com',
+    href: 'mailto:rabiussunny10@gmail.com'
+  },
+  {
+    icon: 'linkedin',
+    label: 'LinkedIn',
+    value: 'linkedin.com/in/rabius-sunny',
+    href: 'https://linkedin.com/in/rabius-sunny'
+  },
+  {
+    icon: 'github',
+    label: 'GitHub',
+    value: 'github.com/rabius-sunny',
+    href: 'https://github.com/rabius-sunny'
+  }
+]
+
+const dotMatrix = Array.from({ length: 64 })
+---
+
+<section id='contact' class='py-16 lg:py-24 relative overflow-hidden'>
+  <!-- Background Ambient Glow -->
+  <div class='absolute bottom-0 right-10 w-[450px] h-[450px] bg-[#00d8f6]/10 rounded-full blur-[140px] pointer-events-none -z-10'></div>
+
+  <Container>
+    <div class='grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative'>
+      <!-- Left Column: Heading & Text -->
+      <div
+        class='lg:col-span-7 flex flex-col items-start'
+        data-reveal='fade-up'
+      >
+        <div class='flex items-center gap-2 mb-2'>
+          <span class='w-5 h-[2px] bg-[#00d8f6]'></span>
+          <span class='text-[11px] sm:text-xs font-bold tracking-widest text-[#00d8f6] uppercase'>
+            LET&apos;S CONNECT
+          </span>
+        </div>
+
+        <h2 class='text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight mt-1'>
+          Interested in working
+          <br />
+          <span class='text-[#00d8f6]'>together?</span>
+        </h2>
+
+        <p class='text-slate-400 text-sm sm:text-base leading-relaxed max-w-lg mt-5'>
+          I&apos;m always open to discussing new opportunities, interesting
+          projects, or just having a chat about technology. Feel free to reach
+          out!
+        </p>
+      </div>
+
+      <!-- Right Column: Contact Cards with Dot Matrix -->
+      <div class='lg:col-span-5 relative' data-reveal='fade-up'>
+        <!-- Dot Matrix Decoration in Background -->
+        <div
+          class='absolute -right-8 -top-8 w-64 h-64 -z-10 hidden sm:grid grid-cols-8 gap-3 opacity-25 pointer-events-none'
+          aria-hidden='true'
+        >
+          {dotMatrix.map(() => (
+            <span class='size-1 rounded-full bg-[#00d8f6]' />
+          ))}
+        </div>
+
+        <div class='flex flex-col gap-4'>
+          {contactItems.map((item) => (
+            <div>
+              <a
+                href={item.href}
+                target={item.href.startsWith('http') ? '_blank' : undefined}
+                rel={
+                  item.href.startsWith('http')
+                    ? 'noopener noreferrer'
+                    : undefined
+                }
+                class='bg-[#04162a] border border-[#0f2c4f] hover:border-[#00d8f6]/50 rounded-2xl p-4 sm:p-5 flex items-center justify-between gap-4 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(0,216,246,0.12)] hover:-translate-y-0.5 group'
+              >
+                <div class='flex items-center gap-4 min-w-0'>
+                  <div class='size-12 rounded-xl bg-[#00d8f6]/10 border border-[#00d8f6]/30 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform'>
+                    <Icon name={item.icon} class='size-5 text-[#00d8f6]' />
+                  </div>
+                  <div class='flex flex-col min-w-0'>
+                    <span class='text-xs text-slate-400 font-medium'>
+                      {item.label}
+                    </span>
+                    <span class='text-sm sm:text-base font-semibold text-white group-hover:text-[#00d8f6] transition-colors truncate'>
+                      {item.value}
+                    </span>
+                  </div>
+                </div>
+
+                <Icon
+                  name='chevron-right'
+                  class='size-5 text-slate-500 group-hover:text-[#00d8f6] group-hover:translate-x-1 transition-all shrink-0'
+                />
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </Container>
+</section>

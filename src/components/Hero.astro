@@ -1,0 +1,160 @@
+---
+import { Image, Picture } from 'astro:assets'
+
+import mePhoto from '../assets/me.png'
+import signature from '../assets/signature.png'
+import Container from './Container.astro'
+import Icon from './Icon.astro'
+
+const dotMatrix = Array.from({ length: 32 })
+---
+
+<section
+  id='about'
+  class='relative pt-32 pb-20 lg:pt-44 lg:pb-32 overflow-hidden'
+>
+  <!-- Background Ambient Glows -->
+  <div class='absolute top-1/4 -left-48 w-96 h-96 bg-[#00d8f6]/10 rounded-full blur-[140px] pointer-events-none -z-10'></div>
+  <div class='absolute top-20 right-1/4 w-[500px] h-[500px] bg-[#0077b6]/20 rounded-full blur-[150px] pointer-events-none -z-10'></div>
+  <div class='absolute top-1/3 right-10 w-[420px] h-[420px] bg-[#00d8f6]/15 rounded-full blur-[120px] pointer-events-none -z-10'></div>
+
+  <Container>
+    <div class='grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center'>
+      <!-- Left Column: Text & Actions -->
+      <div class='lg:col-span-7 flex flex-col items-start anim-fade-up'>
+        <!-- Top Badge -->
+        <div class='inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-[#041a2e]/90 border border-[#00d8f6]/30 backdrop-blur-md mb-6 shadow-sm shadow-[#00d8f6]/10'>
+          <span class='size-2 rounded-full bg-[#00d8f6] shadow-[0_0_8px_#00d8f6] animate-pulse'></span>
+          <span class='text-[11px] sm:text-xs font-bold tracking-wider text-[#00d8f6] uppercase'>
+            WELCOME TO MY PORTFOLIO
+          </span>
+        </div>
+
+        <!-- Main Headline -->
+        <h1 class='text-4xl sm:text-6xl lg:text-[68px] font-bold tracking-tight text-white leading-[1.08] mb-6'>
+          Building digital
+          <br />
+          experiences that
+          <br />
+          work <span class='text-[#00d8f6]'>beautifully.</span>
+        </h1>
+
+        <!-- Sub-headline: Name & Role -->
+        <div class='mb-6'>
+          <h2 class='text-3xl sm:text-4xl font-bold text-white tracking-tight mb-2'>
+            Rabius Sunny
+          </h2>
+          <p class='text-xs sm:text-sm font-semibold tracking-[0.22em] uppercase text-slate-400'>
+            Full Stack Developer
+          </p>
+        </div>
+
+        <!-- Bio Paragraph -->
+        <p class='text-slate-400 text-sm sm:text-base leading-relaxed max-w-xl mb-8'>
+          Full Stack Developer passionate about crafting seamless digital
+          experiences. Skilled in frontend, backend, DevOps, and cloud
+          infrastructure. Turning ideas into high-performance applications.
+        </p>
+
+        <!-- Action Buttons -->
+        <div class='flex flex-wrap items-center gap-4 mb-10'>
+          <a
+            href='#projects'
+            class='inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#00c5e8] hover:bg-[#38bdf8] text-[#011427] font-semibold text-sm transition-all duration-300 shadow-lg shadow-[#00c5e8]/25 hover:shadow-[#00c5e8]/40 hover:-translate-y-0.5'
+          >
+            <Icon name='folder' class='size-4' />
+            <span>View Projects</span>
+            <Icon name='arrow-right' class='size-4' />
+          </a>
+
+          <a
+            href='https://drive.google.com/uc?export=download&id=1ngEur21wHY9BfKTjTMREUpYhjE9F5jY8'
+            class='inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#04172b]/80 hover:bg-[#072444] border border-[#00d8f6]/50 text-white font-medium text-sm transition-all duration-300 hover:-translate-y-0.5'
+          >
+            <Icon name='download' class='size-4' />
+            <span>Download Resume</span>
+          </a>
+        </div>
+
+        <!-- Highlights List with Dividers -->
+        <div class='flex flex-wrap items-center gap-3 sm:gap-5 pt-2 text-slate-300'>
+          <div class='flex items-center gap-2 text-xs sm:text-sm font-medium'>
+            <Icon name='code2' class='size-4 text-[#00d8f6]' />
+            <span>Clean Code</span>
+          </div>
+          <span class='hidden sm:block h-3.5 w-[1px] bg-slate-700/60'></span>
+          <div class='flex items-center gap-2 text-xs sm:text-sm font-medium'>
+            <Icon name='zap' class='size-4 text-[#00d8f6]' />
+            <span>Modern Stack</span>
+          </div>
+          <span class='hidden sm:block h-3.5 w-[1px] bg-slate-700/60'></span>
+          <div class='flex items-center gap-2 text-xs sm:text-sm font-medium'>
+            <Icon name='layers' class='size-4 text-[#00d8f6]' />
+            <span>Scalable Solutions</span>
+          </div>
+          <span class='hidden sm:block h-3.5 w-[1px] bg-slate-700/60'></span>
+          <div class='flex items-center gap-2 text-xs sm:text-sm font-medium'>
+            <Icon name='users' class='size-4 text-[#00d8f6]' />
+            <span>Real World Impact</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Photo Card with Layered Effects -->
+      <div
+        class='lg:col-span-5 relative flex justify-center items-center anim-fade-scale'
+        style='animation-delay: 200ms'
+      >
+        <div class='relative w-[290px] sm:w-[350px] lg:w-[380px]'>
+          <!-- Layer 1: Vibrant glowing fluid shape behind top-right -->
+          <div class='absolute -top-6 -right-6 w-48 h-48 bg-gradient-to-br from-[#00d8f6] to-[#0066cc] rounded-[44px] rotate-[-10deg] blur-[2px] opacity-80 -z-10'></div>
+
+          <!-- Layer 2: Dot matrix on the right -->
+          <div
+            class='absolute -top-4 -right-12 z-0 hidden sm:grid grid-cols-4 gap-2 opacity-35'
+            aria-hidden='true'
+          >
+            {dotMatrix.map(() => (
+              <span class='size-1 rounded-full bg-[#00d8f6]' />
+            ))}
+          </div>
+
+          <!-- Layer 3: Secondary tilted glass frame behind -->
+          <div class='absolute inset-0 bg-[#051a33]/60 border border-[#00d8f6]/30 rounded-[32px] -rotate-3 -z-10 backdrop-blur-sm'></div>
+
+          <!-- Layer 4: Main photo container -->
+          <div class='relative aspect-[4/5] rounded-[28px] overflow-hidden border border-[#00d8f6]/40 shadow-[0_12px_45px_rgba(0,180,255,0.25)] bg-[#031527]'>
+            <Picture
+              src={mePhoto}
+              formats={['avif', 'webp', 'jpeg']}
+              fallbackFormat='jpeg'
+              widths={[320, 420, 640, 800]}
+              sizes='(max-width: 768px) 320px, 420px'
+              alt='Rabius Sunny'
+              loading='eager'
+              fetchpriority='high'
+              decoding='async'
+              class='absolute inset-0 h-full w-full object-cover object-top'
+            />
+
+            <!-- Subtle bottom vignette -->
+            <div class='absolute inset-0 bg-gradient-to-t from-[#011224]/50 via-transparent to-transparent pointer-events-none'></div>
+
+            <!-- Inner border glow -->
+            <div class='absolute inset-0 rounded-[28px] border border-white/10 pointer-events-none'></div>
+          </div>
+
+          <!-- Layer 5: Signature overlaid on bottom right -->
+          <div class='absolute -bottom-6 -right-6 z-20 pointer-events-none'>
+            <Image
+              src={signature}
+              alt='Rabius Sunny Signature'
+              width={210}
+              class='drop-shadow-[0_4px_12px_rgba(0,216,246,0.6)] rotate-[-6deg]'
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </Container>
+</section>

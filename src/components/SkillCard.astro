@@ -1,0 +1,46 @@
+---
+import { headerIconMap } from '../data/iconPaths'
+import type { TSkillGroup } from '../data/skillset'
+import Icon from './Icon.astro'
+
+interface Props {
+  skill: TSkillGroup
+}
+
+const { skill } = Astro.props
+const headerIcon = headerIconMap[skill.headerIcon] ?? 'code2'
+---
+
+<div
+  data-reveal='fade-up'
+  class='bg-[#04162a] border border-[#0f2c4f] hover:border-[#00d8f6]/40 rounded-2xl p-6 transition-all duration-300 hover:shadow-[0_12px_36px_rgba(0,216,246,0.1)] hover:-translate-y-1 flex flex-col group'
+>
+  <!-- Card Header: Icon + Title -->
+  <div class='flex items-center gap-3.5 mb-2'>
+    <div class='size-10 rounded-xl bg-[#00d8f6]/10 border border-[#00d8f6]/30 flex items-center justify-center shrink-0 shadow-sm shadow-[#00d8f6]/10 group-hover:scale-105 transition-transform'>
+      <Icon name={headerIcon} class='size-5 text-[#00d8f6]' />
+    </div>
+    <h3 class='text-lg font-bold text-white tracking-wide group-hover:text-[#00d8f6] transition-colors'>
+      {skill.title}
+    </h3>
+  </div>
+
+  <!-- Description -->
+  <p class='text-slate-400 text-xs sm:text-sm leading-relaxed mt-2 mb-6 min-h-[38px]'>
+    {skill.description}
+  </p>
+
+  <!-- 3x2 Grid of Icons + Labels -->
+  <div class='grid grid-cols-3 gap-y-5 gap-x-2 items-center justify-items-center mt-auto pt-4 border-t border-[#0f2c4f]/60'>
+    {skill.items.map((item) => (
+      <div class='flex flex-col items-center justify-center gap-1.5 w-full hover:scale-110 transition-transform duration-200 cursor-default'>
+        <div class='size-8 flex items-center justify-center'>
+          <Icon name={item.iconKey} variant='fill' class='size-7' />
+        </div>
+        <span class='text-[11px] sm:text-xs text-slate-300 font-medium text-center truncate max-w-[85px]'>
+          {item.name}
+        </span>
+      </div>
+    ))}
+  </div>
+</div>

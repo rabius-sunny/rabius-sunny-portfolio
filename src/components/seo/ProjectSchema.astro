@@ -1,0 +1,30 @@
+---
+import { getImage } from 'astro:assets'
+
+import projects from '../../data/projects'
+
+const schemas = await Promise.all(
+  projects.map(async (project) => {
+    const optimized = await getImage({ src: project.image, format: 'webp' })
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'SoftwareApplication',
+      name: project.heading,
+      description: project.description,
+      url: project.link,
+      image: `https://rabiussunny.com${optimized.src}`,
+      applicationCategory: 'WebApplication',
+      author: {
+        '@type': 'Person',
+        name: 'Rabius Sunny Rezoan',
+        url: 'https://rabiussunny.com'
+      },
+      keywords: project.keywords.join(', ')
+    }
+  })
+)
+---
+
+{schemas.map((schema) => (
+  <script type='application/ld+json' set:html={JSON.stringify(schema)} />
+))}

@@ -1,0 +1,74 @@
+---
+import Container from './Container.astro'
+import Icon from './Icon.astro'
+
+const year = new Date().getFullYear()
+---
+
+<footer class='border-t border-[#0f2c4f]/80 bg-[#010e1d] mt-auto'>
+  <Container>
+    <div class='py-12'>
+      <!-- Top Section: Logo & Social Links -->
+      <div class='flex flex-col md:flex-row items-start md:items-center justify-between gap-6'>
+        <div>
+          <a
+            href='/'
+            class='text-xl sm:text-2xl font-extrabold tracking-tight flex items-center gap-1.5'
+          >
+            <span class='text-white font-black'>RABIUS</span>
+            <span class='text-[#00d8f6] font-black'>SUNNY</span>
+          </a>
+          <p class='text-slate-400 text-xs sm:text-sm mt-2 max-w-sm'>
+            Building digital experiences with passion and precision.
+          </p>
+        </div>
+
+        <div class='flex items-center gap-5'>
+          <a
+            href='https://github.com/rabius-sunny'
+            target='_blank'
+            rel='noopener noreferrer'
+            class='text-slate-400 hover:text-[#00d8f6] hover:scale-110 transition-all duration-200'
+            aria-label='GitHub profile'
+          >
+            <Icon name='github' class='size-5' />
+          </a>
+          <a
+            href='https://fb.com/rabibinsalam'
+            target='_blank'
+            rel='noopener noreferrer'
+            class='text-slate-400 hover:text-[#00d8f6] hover:scale-110 transition-all duration-200'
+            aria-label='Facebook profile'
+          >
+            <Icon name='facebook' class='size-5' />
+          </a>
+          <a
+            href='https://linkedin.com/in/rabius-sunny'
+            target='_blank'
+            rel='noopener noreferrer'
+            class='text-slate-400 hover:text-[#00d8f6] hover:scale-110 transition-all duration-200'
+            aria-label='LinkedIn profile'
+          >
+            <Icon name='linkedin' class='size-5' />
+          </a>
+          <a
+            href='mailto:contact@rabiussunny.com'
+            class='text-slate-400 hover:text-[#00d8f6] hover:scale-110 transition-all duration-200'
+            aria-label='Email contact'
+          >
+            <Icon name='mail' class='size-5' />
+          </a>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div class='my-8 border-t border-[#0f2c4f]/60'></div>
+
+      <!-- Bottom Section: Copyright & Credit -->
+      <div class='flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 font-medium gap-2'>
+        <p>&copy; {year} Rabius Sunny. All rights reserved.</p>
+        <p>Designed & Developed with ❤️</p>
+      </div>
+    </div>
+  </Container>
+</footer>

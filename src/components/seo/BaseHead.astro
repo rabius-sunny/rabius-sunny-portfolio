@@ -1,0 +1,72 @@
+---
+import { siteInfo } from '../../data/site'
+
+interface Props {
+  title: string
+  description?: string
+  canonical?: string
+}
+
+const {
+  title,
+  description = siteInfo.description,
+  canonical = 'https://rabiussunny.com'
+} = Astro.props
+
+const pageTitle = title === siteInfo.name ? title : `${title} | ${siteInfo.name}`
+const ogImage = siteInfo.openGraph.images[0]
+const ogImageUrl = new URL(ogImage.url, 'https://rabiussunny.com').toString()
+---
+
+<meta charset='utf-8' />
+<meta name='viewport' content='width=device-width, initial-scale=1' />
+<title>{pageTitle}</title>
+<meta name='description' content={description} />
+<meta name='author' content={siteInfo.author.name} />
+<meta name='generator' content={siteInfo.generator} />
+<meta name='application-name' content={siteInfo.applicationName} />
+<meta name='keywords' content={siteInfo.keywords.join(', ')} />
+<meta name='creator' content={siteInfo.creator} />
+<meta name='publisher' content={siteInfo.publisher} />
+<link rel='canonical' href={canonical} />
+<meta
+  name='robots'
+  content='index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1'
+/>
+<meta
+  name='googlebot'
+  content='index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1'
+/>
+<meta name='theme-color' content='#011224' />
+
+<meta property='og:title' content={pageTitle} />
+<meta property='og:description' content={description} />
+<meta property='og:site_name' content={siteInfo.name} />
+<meta property='og:locale' content={siteInfo.locale} />
+<meta property='og:type' content='website' />
+<meta property='og:url' content={canonical} />
+<meta property='og:image' content={ogImageUrl} />
+<meta property='og:image:width' content={String(ogImage.width)} />
+<meta property='og:image:height' content={String(ogImage.height)} />
+<meta property='og:image:alt' content={ogImage.alt} />
+
+<meta name='twitter:card' content='summary_large_image' />
+<meta name='twitter:title' content={pageTitle} />
+<meta name='twitter:description' content={description} />
+<meta name='twitter:creator' content={siteInfo.twitterHandle} />
+<meta name='twitter:image' content={ogImageUrl} />
+
+<link rel='icon' href='/favicon.ico' sizes='any' />
+<link rel='icon' href='/favicon.svg' type='image/svg+xml' />
+<link rel='icon' href='/favicon-96x96.png' sizes='96x96' type='image/png' />
+<link rel='apple-touch-icon' href='/apple-touch-icon.png' />
+<link rel='mask-icon' href='/favicon.svg' />
+<link rel='manifest' href='/manifest.webmanifest' />
+
+<link
+  rel='preload'
+  href='/fonts/inter-latin-wght-normal.woff2'
+  as='font'
+  type='font/woff2'
+  crossorigin
+/>
