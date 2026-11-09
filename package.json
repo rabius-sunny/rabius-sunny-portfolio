@@ -2,38 +2,30 @@
   "name": "rabius-sunny",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "format:write": "prettier --write \"**/*.{ts,tsx,mdx}\" --cache",
-    "format:check": "prettier --check \"**/*.{ts,tsx,mdx}\" --cache"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "deploy": "astro build && wrangler deploy",
+    "format:write": "prettier --write \"**/*.{ts,js,mjs,astro,md}\" --cache",
+    "format:check": "prettier --check \"**/*.{ts,js,mjs,astro,md}\" --cache"
   },
   "dependencies": {
-    "framer-motion": "^11.0.5",
-    "lucide-react": "^0.336.0",
-    "next": "14.2.35",
-    "react": "^18",
-    "react-dom": "^18",
-    "sharp": "^0.34.5",
-    "tailwind-merge": "^2.2.1",
-    "typewriter-effect": "^2.21.0"
+    "@fontsource-variable/inter": "^5.3.0",
+    "sharp": "^0.35.5"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.12",
+    "@astrojs/sitemap": "^3.7.4",
     "@ianvs/prettier-plugin-sort-imports": "^4.1.1",
-    "@types/node": "^20.11.19",
-    "@types/react": "^18.2.57",
-    "@types/react-dom": "^18.2.19",
-    "@typescript-eslint/parser": "^7.0.2",
-    "autoprefixer": "^10.4.17",
-    "eslint": "^8.56.0",
-    "eslint-config-next": "^14.1.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-react": "^7.33.2",
-    "eslint-plugin-tailwindcss": "^3.14.3",
-    "postcss": "^8.4.35",
-    "tailwindcss": "^3.4.1",
-    "typescript": "^5.3.3"
+    "@tailwindcss/vite": "^4.3.5",
+    "astro": "^7.4.8",
+    "prettier": "^3.3.3",
+    "prettier-plugin-astro": "^1.1.2",
+    "tailwindcss": "^4.3.5",
+    "typescript": "^5.3.3",
+    "wrangler": "^4.159.0"
   }
 }

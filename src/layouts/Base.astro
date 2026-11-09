@@ -1,0 +1,70 @@
+---
+import '../styles/global.css'
+
+import Footer from '../components/Footer.astro'
+import Nav from '../components/Nav.astro'
+import BaseHead from '../components/seo/BaseHead.astro'
+import PersonSchema from '../components/seo/PersonSchema.astro'
+
+interface Props {
+  title: string
+  description?: string
+  canonical?: string
+}
+
+const { title, description, canonical } = Astro.props
+---
+
+<!doctype html>
+<html lang='en'>
+  <head>
+    <BaseHead title={title} description={description} canonical={canonical} />
+    <PersonSchema />
+    <noscript>
+      <style>
+        [data-reveal] {
+          opacity: 1 !important;
+          transform: none !important;
+        }
+      </style>
+    </noscript>
+  </head>
+  <body class='bg-[#011224] text-slate-100 antialiased selection:bg-[#00d8f6] selection:text-[#011224]'>
+    <div class='flex flex-col min-h-screen'>
+      <Nav />
+      <main class='flex-grow relative overflow-hidden'>
+        <slot />
+      </main>
+      <Footer />
+    </div>
+
+    <!-- Scroll-triggered reveal: progressive enhancement, no framework -->
+    <script is:inline>
+      ;(function () {
+        if (
+          window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+          !('IntersectionObserver' in window)
+        ) {
+          document.querySelectorAll('[data-reveal]').forEach(function (el) {
+            el.classList.add('is-revealed')
+          })
+          return
+        }
+        var observer = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-revealed')
+                observer.unobserve(entry.target)
+              }
+            })
+          },
+          { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
+        )
+        document.querySelectorAll('[data-reveal]').forEach(function (el) {
+          observer.observe(el)
+        })
+      })()
+    </script>
+  </body>
+</html>

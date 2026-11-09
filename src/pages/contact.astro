@@ -1,0 +1,45 @@
+---
+import Container from '../components/Container.astro'
+import Base from '../layouts/Base.astro'
+
+const description =
+  'Contact with Rabius Sunny Rezoan, software developer, frontend engineer and fullstack lover. Send message to Rabius Sunny. Your message is always valuable to me.'
+---
+
+<Base
+  title='Contact me'
+  description={description}
+  canonical='https://rabiussunny.com/contact'
+>
+  <Container>
+    <div class='max-w-md mx-auto min-h-[80vh] pt-24'>
+      <h2 class='text-center my-10'>Your message is always valuable to me</h2>
+      <!-- TODO: the contact form has no backend (it never did) — wire this
+           form to a form-handling service or Cloudflare Worker before use. -->
+      <form class='grid gap-4'>
+        <div>
+          <label for='name'>Your name</label>
+          <input required id='name' name='name' class='input' />
+        </div>
+        <div>
+          <label for='email'>Your email</label>
+          <input required id='email' name='email' type='email' class='input' />
+        </div>
+        <div>
+          <label for='message'>Your message</label>
+          <textarea
+            required
+            id='message'
+            name='message'
+            class='input'
+          ></textarea>
+        </div>
+        <div class='mt-6 mb-20'>
+          <button type='submit' class='btn bg-heading w-full text-primary'>
+            Send message
+          </button>
+        </div>
+      </form>
+    </div>
+  </Container>
+</Base>
