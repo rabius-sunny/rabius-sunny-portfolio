@@ -2,6 +2,9 @@
 import Container from '../components/Container.astro'
 import Base from '../layouts/Base.astro'
 
+// Public Turnstile site key (the secret lives in the Worker, never here).
+const TURNSTILE_SITEKEY = '0x4AAAAAAGD29tkerDuYIH0g'
+
 const description =
   'Contact with Rabius Sunny Rezoan, software developer, frontend engineer and fullstack lover. Send message to Rabius Sunny. Your message is always valuable to me.'
 ---
@@ -14,9 +17,12 @@ const description =
   <Container>
     <div class='max-w-md mx-auto min-h-[80vh] pt-24'>
       <h2 class='text-center my-10'>Your message is always valuable to me</h2>
-      <!-- TODO: the contact form has no backend (it never did) — wire this
-           form to a form-handling service or Cloudflare Worker before use. -->
-      <form class='grid gap-4'>
+      <form id='contact-form' class='grid gap-4'>
+        <!-- Honeypot: hidden from people, bots fill it in -->
+        <div class='absolute -left-[9999px]' aria-hidden='true'>
+          <label for='website'>Leave this field empty</label>
+          <input id='website' name='website' tabindex='-1' autocomplete='off' />
+        </div>
         <div>
           <label for='name'>Your name</label>
           <input required id='name' name='name' class='input' />
@@ -34,12 +40,102 @@ const description =
             class='input'
           ></textarea>
         </div>
+        <div id='turnstile-slot' data-sitekey={TURNSTILE_SITEKEY}></div>
         <div class='mt-6 mb-20'>
-          <button type='submit' class='btn bg-heading w-full text-primary'>
+          <button
+            id='contact-submit'
+            type='submit'
+            class='btn bg-heading w-full text-primary disabled:opacity-60 disabled:cursor-not-allowed'
+          >
             Send message
           </button>
+          <p
+            id='contact-status'
+            role='status'
+            aria-live='polite'
+            class='mt-4 text-center text-sm'
+          ></p>
+          <noscript>
+            <p class='mt-4 text-center text-sm text-slate-400'>
+              Please enable JavaScript to send a message, or email me at
+              rabiussunny10@gmail.com.
+            </p>
+          </noscript>
         </div>
       </form>
     </div>
   </Container>
 </Base>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement
+  const button = document.getElementById('contact-submit') as HTMLButtonElement
+  const statusEl = document.getElementById('contact-status') as HTMLElement
+  const slot = document.getElementById('turnstile-slot') as HTMLElement
+
+  type Turnstile = {
+    render: (el: HTMLElement, opts: Record<string, unknown>) => string
+    reset: (id?: string) => void
+  }
+  const ts = () => (window as unknown as { turnstile?: Turnstile }).turnstile
+
+  let widgetId: string | undefined
+  let loading = false
+
+  // Load Turnstile lazily (first interaction) so it never touches page-load metrics.
+  function loadTurnstile() {
+    if (loading) return
+    loading = true
+    const s = document.createElement('script')
+    s.src =
+      'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit'
+    s.async = true
+    s.onload = () => {
+      widgetId = ts()?.render(slot, {
+        sitekey: slot.dataset.sitekey,
+        theme: 'dark'
+      })
+    }
+    document.head.appendChild(s)
+  }
+  form.addEventListener('focusin', loadTurnstile, { once: true })
+
+  function setStatus(msg: string, ok: boolean) {
+    statusEl.textContent = msg
+    statusEl.className = `mt-4 text-center text-sm ${ok ? 'text-heading' : 'text-red-400'}`
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault()
+    const data = Object.fromEntries(new FormData(form).entries())
+    if (!data['cf-turnstile-response']) {
+      loadTurnstile()
+      setStatus(
+        'Please wait for the verification check, then try again.',
+        false
+      )
+      return
+    }
+    button.disabled = true
+    setStatus('Sending…', true)
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      })
+      const out = (await res.json()) as { ok: boolean; error?: string }
+      if (out.ok) {
+        form.reset()
+        setStatus('Thanks! Your message was sent. I will reply soon.', true)
+      } else {
+        setStatus(out.error ?? 'Something went wrong.', false)
+      }
+    } catch {
+      setStatus('Network error. Please try again.', false)
+    } finally {
+      button.disabled = false
+      if (widgetId) ts()?.reset(widgetId)
+    }
+  })
+</script>
