@@ -1,0 +1,77 @@
+---
+import { Image } from 'astro:assets'
+
+import projects from '../data/projects'
+import Container from './Container.astro'
+import Icon from './Icon.astro'
+---
+
+<Container>
+  <div class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+    {projects.map((item) => (
+      <div
+        data-reveal='fade-up'
+        class='bg-[#04162a] border border-[#0f2c4f] hover:border-[#00d8f6]/50 rounded-2xl p-5 flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_36px_rgba(0,216,246,0.12)] group'
+      >
+        <!-- Project Image -->
+        <a
+          href={item.link}
+          target='_blank'
+          rel='noopener noreferrer'
+          class='block relative aspect-[16/10] rounded-xl overflow-hidden mb-4 bg-[#020b14]'
+        >
+          <Image
+            src={item.image}
+            alt={item.heading}
+            widths={[400, 800]}
+            sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+            loading='lazy'
+            decoding='async'
+            class='object-cover group-hover:scale-105 transition-transform duration-500 w-full h-full'
+          />
+          <div class='absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-300' />
+        </a>
+
+        <!-- Header Meta: Category + External Link -->
+        <div class='flex items-center justify-between mb-1.5'>
+          <span class='text-[11px] font-bold tracking-wider text-[#00d8f6] uppercase'>
+            {item.subheading}
+          </span>
+          <a
+            href={item.link}
+            target='_blank'
+            rel='noopener noreferrer'
+            class='text-slate-400 group-hover:text-[#00d8f6] transition-colors p-1'
+            aria-label={`Open ${item.heading} project in new tab`}
+          >
+            <Icon name='external-link' class='size-4' />
+          </a>
+        </div>
+
+        <!-- Title -->
+        <a
+          href={item.link}
+          target='_blank'
+          rel='noopener noreferrer'
+          class='block font-bold text-lg sm:text-xl text-white tracking-wide uppercase mb-2 group-hover:text-[#00d8f6] transition-colors'
+        >
+          {item.heading}
+        </a>
+
+        <!-- Description -->
+        <p class='text-slate-400 text-xs sm:text-sm leading-relaxed mb-6 flex-1'>
+          {item.description}
+        </p>
+
+        <!-- Tech Tags -->
+        <div class='flex items-center gap-2 flex-wrap pt-2 mt-auto'>
+          {item.keywords.map((kw) => (
+            <span class='text-xs text-slate-300 bg-[#071d38] border border-[#133560] px-3 py-1 rounded-full font-medium'>
+              {kw}
+            </span>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+</Container>

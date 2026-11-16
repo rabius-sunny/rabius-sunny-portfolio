@@ -1,0 +1,22 @@
+---
+interface Props {
+  items: string[]
+  compact?: boolean
+}
+
+const { items, compact } = Astro.props
+---
+
+<div class='flex items-center gap-2 flex-wrap'>
+  {items.map((keyword) => (
+    <span
+      class:list={[
+        'font-medium text-xs rounded-full px-3 py-1 transition-all duration-300 border backdrop-blur-sm',
+        'bg-white/5 border-white/10 text-white/90 hover:bg-white/10 hover:border-heading/50 hover:text-heading cursor-default hover:-translate-y-0.5',
+        compact ? 'text-[0.6rem] px-2 py-0.5' : 'lg:text-sm'
+      ]}
+    >
+      {keyword}
+    </span>
+  ))}
+</div>

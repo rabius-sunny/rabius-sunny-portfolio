@@ -1,0 +1,150 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-primary: #011224;
+  --color-card: #04162a;
+  --color-card-border: #0f2c4f;
+  --color-accent: #00d8f6;
+  --color-heading: #00d8f6;
+  --color-main: #00a8e8;
+  --color-text: #94a3b8;
+
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+
+  --animate-tiny-bounce: tiny-bounce 2.5s ease-in-out infinite;
+
+  @keyframes tiny-bounce {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+}
+
+/* Self-hosted Inter variable font (latin subset, preloaded in BaseHead) */
+@font-face {
+  font-family: 'Inter Variable';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/fonts/inter-latin-wght-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+    U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122,
+    U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-sans);
+  }
+
+  h1 {
+    @apply text-3xl font-medium;
+  }
+  h2 {
+    @apply text-xl font-medium;
+  }
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+  label {
+    @apply font-medium;
+  }
+  .flex-between {
+    @apply flex items-center justify-between;
+  }
+  .btn {
+    @apply px-4 py-2 rounded-lg font-medium duration-200 text-center;
+  }
+  .input {
+    @apply mt-2 w-full bg-transparent border border-white/20 px-4 py-2 rounded focus:outline-none focus:border-none focus:ring-1 focus:ring-white;
+  }
+}
+
+/* Entrance animations (replace framer-motion; zero JS, respects reduced motion) */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-scale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Scroll-triggered reveal (progressive enhancement via tiny IntersectionObserver in Base.astro) */
+[data-reveal] {
+  opacity: 0;
+}
+[data-reveal='fade-up'] {
+  transform: translateY(24px);
+}
+[data-reveal='fade-scale'] {
+  transform: scale(0.96);
+}
+[data-reveal].is-revealed {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out;
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.anim-fade-up {
+  animation: fade-up 0.6s ease-out both;
+}
+.anim-fade-scale {
+  animation: fade-scale 0.8s ease-out both;
+}
+.anim-fade-in {
+  animation: fade-in 0.6s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+  .anim-fade-up,
+  .anim-fade-scale,
+  .anim-fade-in,
+  .animate-pulse,
+  .animate-tiny-bounce {
+    animation: none;
+  }
+  [data-reveal].is-revealed {
+    transition: none;
+  }
+}

@@ -1,0 +1,23 @@
+---
+import Projects from '../components/Projects.astro'
+import SectionHeader from '../components/SectionHeader.astro'
+import ProjectSchema from '../components/seo/ProjectSchema.astro'
+import Base from '../layouts/Base.astro'
+
+const description =
+  'Projects of Rabius Sunny Rezoan, software developer, frontend engineer and fullstack lover. All personal and projects running on production are listed here.'
+---
+
+<Base
+  title='Projects'
+  description={description}
+  canonical='https://rabiussunny.com/projects'
+>
+  <ProjectSchema />
+  <div class='pt-24'>
+    <SectionHeader title='Projects' />
+    <div class='my-20'>
+      <Projects />
+    </div>
+  </div>
+</Base>

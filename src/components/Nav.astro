@@ -1,0 +1,268 @@
+---
+import { siteInfo } from '../data/site'
+import Container from './Container.astro'
+import Icon from './Icon.astro'
+
+// On sub-pages (#hash links alone would resolve against the current page),
+// prefix anchor links with '/' so they navigate back home first.
+// On '/' the rendered hrefs are byte-identical to the previous site.
+// Note: with build.format 'file', the homepage pathname is '/index.html'.
+const onHome =
+  Astro.url.pathname === '/' || Astro.url.pathname === '/index.html'
+// @ts-ignore debug
+const navItems = siteInfo.navItems.map((item) => ({
+  ...item,
+  href: onHome || !item.href.startsWith('#') ? item.href : `/${item.href}`
+}))
+const contactHref = onHome ? '#contact' : '/#contact'
+---
+
+<header
+  id='site-header'
+  class='fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4 bg-transparent border-b border-transparent'
+>
+  <Container>
+    <div class='flex items-center justify-between' aria-label='Global'>
+      <!-- Logo -->
+      <div class='flex z-50'>
+        <a
+          href='/'
+          class='text-xl sm:text-2xl font-extrabold tracking-tight transition-opacity hover:opacity-90 flex items-center gap-1.5'
+        >
+          <span class='text-white font-black'>RABIUS</span>
+          <span class='text-[#00d8f6] font-black'>SUNNY</span>
+        </a>
+      </div>
+
+      <!-- Mobile navigation toggle -->
+      <div class='z-50 md:hidden'>
+        <!-- Mobile menu panel -->
+        <div
+          id='mobile-menu'
+          class='fixed top-0 left-0 bottom-0 w-full invisible opacity-0 transition-opacity duration-300'
+          aria-hidden='true'
+        >
+          <div class='absolute top-0 left-0 bottom-0 w-full bg-[#011224]/95 backdrop-blur-2xl border-r border-[#0f2c4f]'></div>
+          <nav
+            class='absolute top-24 left-0 w-full p-8 flex flex-col gap-6'
+            aria-label='Mobile'
+          >
+            <ul class='flex flex-col gap-6 p-0 m-0'>
+              {navItems.map((item, idx) => (
+                <li
+                  class='list-none mobile-menu-link opacity-0 translate-y-6 transition-opacity transition-transform duration-300'
+                  style={`transition-delay: ${100 + idx * 70}ms`}
+                >
+                  <a
+                    href={item.href}
+                    tabindex='-1'
+                    class='text-2xl font-bold text-slate-200 hover:text-[#00d8f6] transition-colors'
+                  >
+                    {item.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+
+            <div
+              class='pt-4 mobile-menu-link opacity-0 translate-y-6 transition-opacity transition-transform duration-300'
+              style={`transition-delay: ${100 + navItems.length * 70}ms`}
+            >
+              <a
+                href={contactHref}
+                tabindex='-1'
+                class='inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-[#00d8f6]/50 bg-[#061e38]/60 text-base font-semibold text-[#00d8f6] hover:bg-[#00d8f6] hover:text-[#011224] transition-all'
+              >
+                <span>Say Hello</span>
+                <Icon name='arrow-right' class='size-4' />
+              </a>
+            </div>
+          </nav>
+        </div>
+
+        <!-- Backdrop -->
+        <div
+          id='mobile-menu-backdrop'
+          class='fixed inset-0 -z-10 bg-black/70 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 md:hidden'
+          aria-hidden='true'
+        ></div>
+
+        <!-- Toggle sits last so it paints above the open menu panel -->
+        <button
+          id='nav-toggle'
+          type='button'
+          aria-expanded='false'
+          aria-controls='mobile-menu'
+          aria-label='Open menu'
+          class='outline-none border-none select-none cursor-pointer text-white hover:text-heading absolute top-3 right-4 size-10 rounded-full flex items-center justify-center transition-colors hover:bg-white/10'
+        >
+          <svg width='25' height='25' viewBox='0 0 23 23' aria-hidden='true'>
+            <path
+              id='nav-toggle-line-1'
+              d='M 2 2.5 L 20 2.5'
+              fill='transparent'
+              stroke-width='3'
+              stroke='currentColor'
+              stroke-linecap='round'
+              class='transition-all duration-300 origin-center'
+            />
+            <path
+              id='nav-toggle-line-2'
+              d='M 2 9.423 L 20 9.423'
+              fill='transparent'
+              stroke-width='3'
+              stroke='currentColor'
+              stroke-linecap='round'
+              class='transition-opacity duration-100'
+            />
+            <path
+              id='nav-toggle-line-3'
+              d='M 2 16.346 L 20 16.346'
+              fill='transparent'
+              stroke-width='3'
+              stroke='currentColor'
+              stroke-linecap='round'
+              class='transition-all duration-300 origin-center'
+            />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Desktop navigation -->
+      <div class='hidden md:flex items-center gap-8'>
+        <nav class='flex items-center gap-7'>
+          {navItems.map((item) => (
+            <a
+              href={item.href}
+              class='text-sm font-medium text-slate-300 hover:text-white transition-colors duration-200'
+            >
+              {item.title}
+            </a>
+          ))}
+        </nav>
+
+        <a
+          href={contactHref}
+          class='group inline-flex items-center gap-2 px-5 py-2 rounded-full border border-[#00d8f6]/50 bg-[#061e38]/30 text-sm font-medium text-[#00d8f6] hover:bg-[#00d8f6] hover:text-[#011224] transition-all duration-300 shadow-sm shadow-[#00d8f6]/20'
+        >
+          <span>Say Hello</span>
+          <Icon
+            name='arrow-right'
+            class='size-4 group-hover:translate-x-0.5 transition-transform'
+          />
+        </a>
+      </div>
+    </div>
+  </Container>
+</header>
+
+<script is:inline>
+  ;(function () {
+    var header = document.getElementById('site-header')
+    var toggle = document.getElementById('nav-toggle')
+    var menu = document.getElementById('mobile-menu')
+    var backdrop = document.getElementById('mobile-menu-backdrop')
+    var line1 = document.getElementById('nav-toggle-line-1')
+    var line2 = document.getElementById('nav-toggle-line-2')
+    var line3 = document.getElementById('nav-toggle-line-3')
+    if (!header || !toggle || !menu || !backdrop) return
+
+    var isOpen = false
+    var hideTimer = null
+    var links = Array.prototype.slice.call(
+      menu.querySelectorAll('.mobile-menu-link')
+    )
+    var focusable = Array.prototype.slice.call(menu.querySelectorAll('a'))
+    var lastFocused = null
+
+    function paintHeader() {
+      var scrolled = window.scrollY > 20
+      header.classList.toggle('bg-[#011224]/85', scrolled)
+      header.classList.toggle('backdrop-blur-md', scrolled)
+      header.classList.toggle('border-[#0f2c4f]/60', scrolled)
+      header.classList.toggle('shadow-lg', scrolled)
+      header.classList.toggle('shadow-black/20', scrolled)
+      header.classList.toggle('bg-transparent', !scrolled)
+      header.classList.toggle('border-transparent', !scrolled)
+    }
+
+    function setHamburger(open) {
+      if (!line1 || !line2 || !line3) return
+      line1.setAttribute('d', open ? 'M 3 16.5 L 17 2.5' : 'M 2 2.5 L 20 2.5')
+      line2.style.opacity = open ? '0' : '1'
+      line3.setAttribute(
+        'd',
+        open ? 'M 3 2.5 L 17 16.346' : 'M 2 16.346 L 20 16.346'
+      )
+    }
+
+    function setMenu(open) {
+      isOpen = open
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false')
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu')
+      menu.classList.toggle('opacity-0', !open)
+      // Visibility flips instantly (it is NOT transitioned, so focus()
+      // works in the same task). Delay hiding until the fade-out finishes.
+      if (hideTimer) {
+        clearTimeout(hideTimer)
+        hideTimer = null
+      }
+      if (open) {
+        menu.classList.remove('invisible')
+      } else {
+        hideTimer = setTimeout(function () {
+          menu.classList.add('invisible')
+        }, 300)
+      }
+      menu.setAttribute('aria-hidden', open ? 'false' : 'true')
+      backdrop.classList.toggle('opacity-0', !open)
+      backdrop.classList.toggle('pointer-events-none', !open)
+      setHamburger(open)
+      links.forEach(function (el) {
+        el.classList.toggle('opacity-0', !open)
+        el.classList.toggle('translate-y-6', !open)
+      })
+      focusable.forEach(function (a) {
+        if (open) a.removeAttribute('tabindex')
+        else a.setAttribute('tabindex', '-1')
+      })
+      document.body.style.overflow = open ? 'hidden' : ''
+      if (open) {
+        lastFocused = document.activeElement
+        if (focusable[0]) focusable[0].focus()
+      } else if (lastFocused && lastFocused.focus) {
+        lastFocused.focus()
+      }
+    }
+
+    toggle.addEventListener('click', function () {
+      setMenu(!isOpen)
+    })
+    // Keep focus where the script puts it: mousedown would otherwise move
+    // focus to the toggle, racing the menu-open focus target.
+    toggle.addEventListener('mousedown', function (e) {
+      e.preventDefault()
+    })
+    backdrop.addEventListener('click', function () {
+      setMenu(false)
+    })
+    menu.addEventListener('click', function (e) {
+      if (e.target && e.target.closest('a')) setMenu(false)
+    })
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && isOpen) setMenu(false)
+    })
+    window.addEventListener('scroll', paintHeader, { passive: true })
+    paintHeader()
+  })()
+</script>
+
+<style>
+  @media (prefers-reduced-motion: reduce) {
+    #mobile-menu,
+    #mobile-menu-backdrop,
+    .mobile-menu-link {
+      transition: none;
+    }
+  }
+</style>
