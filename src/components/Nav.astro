@@ -14,7 +14,7 @@ const navItems = siteInfo.navItems.map((item) => ({
   ...item,
   href: onHome || !item.href.startsWith('#') ? item.href : `/${item.href}`
 }))
-const contactHref = onHome ? '#contact' : '/#contact'
+const contactHref = '/contact'
 ---
 
 <header
