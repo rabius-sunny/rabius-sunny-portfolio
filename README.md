@@ -15,6 +15,8 @@ Static portfolio website of Rabius Sunny, built with [Astro](https://astro.build
 
 ## Notes
 
-- Fully static output (`output: 'static'`). Contact form markup is present but has no backend (TODO in `src/pages/contact.astro`).
+- Fully static output (`output: 'static'`) served by Workers static assets.
+- Contact form: posts to `/api/contact`, handled by the Worker in `worker/index.ts` (Turnstile + honeypot + rate limit, emailed via the Email Routing `send_email` binding to the verified destination in `wrangler.jsonc`). Only `/api/*` runs the Worker (`run_worker_first`).
+- Worker secret (once): `bunx wrangler secret put TURNSTILE_SECRET` (get it with `bunx wrangler turnstile widget get <sitekey>`). Local dev: put it in `.dev.vars` (gitignored) and run `bun run build && bunx wrangler dev`.
 - Images are optimized at build time via `astro:assets` (AVIF/WebP).
 - SEO: per-page title/description/canonical, OG/Twitter tags, JSON-LD, sitemap, robots, web manifest.

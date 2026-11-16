@@ -36,3 +36,6 @@ yarn-error.log*
 
 # cloudflare
 .wrangler/
+
+# local worker secrets
+.dev.vars
